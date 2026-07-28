@@ -1,0 +1,220 @@
+@import "@ponti-studios/ui/styles.css";
+
+@source "../../../packages/ui/src";
+@source "./";
+
+:root {
+  --border: var(--color-border);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.earth-shell {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--background);
+}
+
+.earth-viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  touch-action: none;
+}
+
+.earth-viewport-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+.map-loading-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb, var(--background) 84%, transparent);
+  color: var(--muted-foreground);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+/* MapLibre GL overrides */
+.maplibregl-map {
+  font-family: var(--font-sans);
+}
+
+.maplibregl-ctrl-attrib {
+  background: color-mix(in srgb, var(--background) 80%, transparent) !important;
+  color: var(--muted-foreground) !important;
+  font-size: 10px;
+}
+
+.maplibregl-ctrl-attrib a {
+  color: var(--muted-foreground) !important;
+}
+
+.maplibregl-ctrl-group {
+  background: color-mix(in srgb, var(--background) 92%, transparent) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+}
+
+.maplibregl-ctrl-group button {
+  color: var(--foreground) !important;
+  background: transparent !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+.maplibregl-ctrl-group button:hover {
+  background: color-mix(in srgb, var(--accent) 10%, transparent) !important;
+  color: var(--accent-foreground) !important;
+}
+
+.maplibregl-popup-content {
+  color: var(--foreground);
+  background: var(--popover);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-family: var(--font-sans);
+  box-shadow: 0 24px 60px rgb(17 24 39 / 0.18);
+}
+
+.maplibregl-popup-tip {
+  border-top-color: var(--popover) !important;
+}
+
+.maplibregl-popup-close-button {
+  color: var(--muted-foreground) !important;
+  font-size: 16px;
+  padding: 2px 6px;
+}
+
+/* Bottom sheet dock */
+.earth-dock {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(480px, calc(100vw - 2rem));
+  max-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  z-index: 100;
+  overflow: hidden;
+  box-shadow:
+    0 8px 40px rgb(0 0 0 / 0.12),
+    0 2px 8px rgb(0 0 0 / 0.06);
+  touch-action: none;
+}
+
+.earth-dock-handle {
+  flex-shrink: 0;
+  width: 36px;
+  height: 4px;
+  background: var(--border);
+  border-radius: 9999px;
+  margin: 10px auto 0;
+  cursor: grab;
+}
+
+.earth-dock-handle:active {
+  cursor: grabbing;
+}
+
+.earth-dock-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 1.5rem 1.5rem;
+}
+
+.earth-dock-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.earth-dock-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.earth-dock-content::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 9999px;
+}
+
+/* Centered pill navigation overlaid on the map */
+.earth-pill-nav {
+  position: fixed;
+  top: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  padding: 3px;
+  box-shadow: 0 2px 12px rgb(0 0 0 / 0.08);
+}
+
+.earth-pill-tab {
+  padding: 0.375rem 1rem;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--muted-foreground);
+  transition:
+    color 0.15s ease,
+    background 0.15s ease;
+  white-space: nowrap;
+}
+
+.earth-pill-tab:hover {
+  color: var(--foreground);
+}
+
+.earth-pill-tab--active {
+  background: var(--foreground);
+  color: var(--background);
+}
