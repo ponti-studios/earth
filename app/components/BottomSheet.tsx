@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const STUB_PX = 48; // px visible when closed
-const FLICK_VELOCITY = 0.4; // px/ms
-const DRAG_THRESHOLD = 0.25; // fraction of height to commit close
+const STUB_PX = 48;
+const FLICK_VELOCITY = 0.4;
+const DRAG_THRESHOLD = 0.25;
 
 interface Props {
   children: React.ReactNode;
@@ -10,7 +10,6 @@ interface Props {
 
 export default function BottomSheet({ children }: Props) {
   const sheetRef = useRef<HTMLDivElement>(null);
-  // translateY in px: 0 = fully open, (height - STUB_PX) = closed/stub
   const [translateY, setTranslateY] = useState(0);
   const [dragOffset, setDragOffset] = useState(0);
   const isDragging = useRef(false);
@@ -44,7 +43,6 @@ export default function BottomSheet({ children }: Props) {
       if (!isDragging.current || !dragRef.current) return;
       const delta = e.clientY - dragRef.current.startY;
       if (Math.abs(delta) > 4) didDrag.current = true;
-      // Clamp so you can't drag above the open position
       setDragOffset(Math.max(-translateY, delta));
     },
     [translateY],
@@ -61,7 +59,7 @@ export default function BottomSheet({ children }: Props) {
       dragRef.current = null;
       setDragOffset(0);
 
-      if (!didDrag.current) return; // let onClick handle it
+      if (!didDrag.current) return;
 
       const height = getHeight();
       const newY = Math.max(0, translateY + delta);
@@ -89,7 +87,6 @@ export default function BottomSheet({ children }: Props) {
     }
   }, [translateY, open, close]);
 
-  // Re-open when route changes while closed
   const prevChildren = useRef(children);
   useEffect(() => {
     if (children !== prevChildren.current) {
@@ -98,7 +95,6 @@ export default function BottomSheet({ children }: Props) {
     }
   }, [children, open]);
 
-  // Set initial closed position once the sheet has rendered and we know its height
   const initialised = useRef(false);
   useEffect(() => {
     if (!initialised.current && sheetRef.current) {
@@ -112,18 +108,22 @@ export default function BottomSheet({ children }: Props) {
   return (
     <div
       ref={sheetRef}
-      className="earth-dock"
+      className="bg-background fixed bottom-4 left-1/2 z-100 flex w-[min(480px,calc(100vw-2rem))] max-h-[70vh] flex-col overflow-hidden rounded-2xl border touch-none [box-shadow:0_8px_40px_rgb(0_0_0_/_0.12),0_2px_8px_rgb(0_0_0_/_0.06)]"
       style={{
         transform: `translateX(-50%) translateY(${currentY}px)`,
-        transition: isDragging.current ? "none" : "transform 0.35s cubic-bezier(0.32, 0.72, 0, 1)",
+        transition: isDragging.current
+          ? "none"
+          : "transform 0.35s cubic-bezier(0.32, 0.72, 0, 1)",
       }}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
       onPointerCancel={onPointerUp}
     >
-      <div className="earth-dock-handle" aria-hidden="true" onClick={onHandleClick} />
-      <div className="earth-dock-content">{children}</div>
+      <div className="mx-auto mt-2.5 h-1 w-9 shrink-0 cursor-grab rounded-full bg-border active:cursor-grabbing" aria-hidden="true" onClick={onHandleClick} />
+      <div className="bottom-sheet-scroll flex-1 overflow-y-auto p-4 pb-6">
+        {children}
+      </div>
     </div>
   );
 }

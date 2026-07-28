@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import type { TflCamera } from "../signals/earth";
+import type { TflCamera } from "~/lib/public-data";
 
 async function fetchTflCameras(): Promise<TflCamera[]> {
   try {

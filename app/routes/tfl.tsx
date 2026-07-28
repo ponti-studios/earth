@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router";
-import { useTflCameras } from "../lib/hooks/useOrbitData";
+import { useTflCameras } from "../lib/hooks/use-tfl-cameras";
 
 const MAX_RESULTS = 20;
 
@@ -43,9 +43,9 @@ export default function Tfl() {
           ) : (
             <ul className="space-y-1">
               {results.map((camera) => (
-                <li key={camera.id}>
+                <li key={camera.tflId}>
                   <Link
-                    to={`/tfl/${camera.id}`}
+                    to={`/tfl/${camera.tflId}`}
                     className="bg-card border-border hover:border-ring flex items-center gap-3 rounded-md border p-3 transition-colors"
                   >
                     <span

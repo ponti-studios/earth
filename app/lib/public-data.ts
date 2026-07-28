@@ -1,53 +1,57 @@
-const BASE =
-  process.env.PUBLIC_DATA_URL ?? "https://public-data-production.up.railway.app";
+import { z } from "zod";
+import { EarthServerEnv } from "./server/env.js";
 
-interface TflCameraRaw {
-  id: number;
-  tfl_id: string;
-  common_name: string;
-  place_type: string;
-  lat: number;
-  lng: number;
-  properties: string;
+const { publicDataUrl: BASE } = EarthServerEnv.parse(process.env);
+
+const TflCameraRawSchema = z.object({
+  tflId: z.string(),
+  commonName: z.string(),
+  placeType: z.string(),
+  lat: z.number(),
+  lng: z.number(),
+  properties: z.string(),
+});
+
+export const TflCameraSchema = z.object({
+  tflId: z.string(),
+  commonName: z.string(),
+  lat: z.number(),
+  lng: z.number(),
+  available: z.string(),
+  imageUrl: z.string(),
+  videoUrl: z.string(),
+  view: z.string(),
+});
+
+export type TflCamera = z.infer<typeof TflCameraSchema>;
+
+function parseProperties(raw: string) {
+  const parsed = JSON.parse(raw);
+  return {
+    available: String(parsed.available ?? ""),
+    imageUrl: String(parsed.imageUrl ?? ""),
+    videoUrl: String(parsed.videoUrl ?? ""),
+    view: String(parsed.view ?? ""),
+  };
 }
 
-interface TflCameraProperties {
-  available: string;
-  imageUrl: string;
-  videoUrl: string;
-  view: string;
-}
-
-export interface TflCameraParsed {
-  id: string;
-  available: string;
-  commonName: string;
-  imageUrl: string;
-  videoUrl: string;
-  view: string;
-  lat: number;
-  lng: number;
-}
-
-export async function fetchTflCameras(type?: string): Promise<TflCameraParsed[]> {
+export async function fetchTflCameras(type?: string): Promise<TflCamera[]> {
   const params = new URLSearchParams();
   if (type) params.set("type", type);
   const qs = params.toString();
   const url = `${BASE}/tfl/cameras${qs ? `?${qs}` : ""}`;
   const res = await fetch(url);
   if (!res.ok) throw new Error(`public-data API error: ${res.status}`);
-  const raw: TflCameraRaw[] = (await res.json()) as TflCameraRaw[];
-  return raw.map((c) => {
-    const props: TflCameraProperties = JSON.parse(c.properties);
-    return {
-      id: c.tfl_id,
-      commonName: c.common_name,
-      available: props.available,
-      imageUrl: props.imageUrl,
-      videoUrl: props.videoUrl,
-      view: props.view,
-      lat: c.lat,
-      lng: c.lng,
-    };
-  });
+  const raw = z.array(TflCameraRawSchema).parse(await res.json());
+  return raw.map((c) =>
+    TflCameraSchema.parse({ ...c, ...parseProperties(c.properties), properties: undefined }),
+  );
+}
+
+export async function fetchTflCamera(tflId: string): Promise<TflCamera | null> {
+  const res = await fetch(`${BASE}/tfl/cameras/${tflId}`);
+  if (res.status === 404) return null;
+  if (!res.ok) throw new Error(`public-data API error: ${res.status}`);
+  const raw = TflCameraRawSchema.parse(await res.json());
+  return TflCameraSchema.parse({ ...raw, ...parseProperties(raw.properties), properties: undefined });
 }

@@ -1,43 +1,25 @@
 import { Link } from "react-router";
-import { db, eq, tflCameras } from "~/db";
+import { fetchTflCamera } from "~/lib/public-data";
 import type { Route } from "./+types/tfl.$cameraId";
 
 export async function loader({ params }: Route.LoaderArgs) {
   try {
-    const camera = await db
-      .select()
-      .from(tflCameras)
-      .where(eq(tflCameras.tflId, params.cameraId))
-      .limit(1);
-
-    if (camera.length === 0) return { camera: null };
-
-    const dbCamera = camera[0];
-    const imageUrl = dbCamera.imageUrl || "";
+    const camera = await fetchTflCamera(params.cameraId);
+    if (!camera) return { camera: null };
 
     let lastPhotoAt: string | null = null;
-    if (imageUrl) {
+    if (camera.imageUrl) {
       try {
-        const head = await fetch(imageUrl, { method: "HEAD" });
+        const head = await fetch(camera.imageUrl, { method: "HEAD" });
         const lastModified = head.headers.get("last-modified");
         if (lastModified) lastPhotoAt = lastModified;
       } catch {
-        // non-critical — ignore
+        // non-critical
       }
     }
 
     return {
-      camera: {
-        id: dbCamera.tflId,
-        commonName: dbCamera.commonName,
-        available: dbCamera.available ? "true" : "false",
-        imageUrl,
-        videoUrl: dbCamera.videoUrl || "",
-        view: dbCamera.view || "",
-        lat: dbCamera.lat,
-        lng: dbCamera.lng,
-        lastPhotoAt,
-      },
+      camera: { ...camera, lastPhotoAt },
     };
   } catch (error) {
     console.error("Error fetching camera by ID:", error);
@@ -87,7 +69,7 @@ export default function TflCamera({ loaderData }: Route.ComponentProps) {
       <div>
         <h2 className="text-foreground leading-tight font-semibold">{camera.commonName}</h2>
         <p className="text-muted-foreground mt-0.5 font-mono text-[10px] tracking-widest uppercase">
-          {camera.id}
+          {camera.tflId}
         </p>
         <div className="text-muted-foreground mt-2 space-y-1 font-mono text-[10px] tracking-widest uppercase">
           <div className="flex justify-between">

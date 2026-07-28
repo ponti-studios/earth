@@ -10,7 +10,6 @@ import {
   useLocation,
   useNavigation,
 } from "react-router";
-import { AppNavigation } from "@ponti-studios/ui/navigation";
 import "./app.css";
 import BottomSheet from "./components/BottomSheet";
 import MapLibreViewer from "./components/MapLibreViewer";
@@ -64,18 +63,28 @@ export default function App() {
 
   return (
     <QueryProvider>
-      <div className="earth-shell">
+      <div className="absolute inset-0 overflow-hidden bg-background">
         <ClientOnly>
           <MapLibreViewer />
         </ClientOnly>
-        <AppNavigation
-          brand="Earth"
-          brandHref="/"
-          links={[{ href: "/tfl", label: "TFL" }]}
-          activeHref={location.pathname.startsWith("/tfl") ? "/tfl" : location.pathname}
-          linkComponent={Link}
-          linkProp="to"
-        />
+
+        <nav
+          className="fixed top-5 left-1/2 z-200 flex -translate-x-1/2 items-center gap-0.5 rounded-full border bg-card p-0.5 [box-shadow:0_2px_12px_rgb(0_0_0_/_0.08)] max-sm:top-auto max-sm:bottom-[calc(1rem+48px+0.5rem)]"
+          aria-label="Primary navigation"
+        >
+          <Link
+            to="/tfl"
+            className={`rounded-full px-4 py-1.5 text-[11px] font-semibold tracking-wider uppercase no-underline transition-colors whitespace-nowrap ${
+              location.pathname.startsWith("/tfl")
+                ? "bg-foreground text-background"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            <img src="/logo.tfl.500x500.webp" alt="" className="mr-1.5 inline-block size-3.5" />
+            Cameras
+          </Link>
+        </nav>
+
         <BottomSheet>{isNavigating ? <SheetSkeleton /> : <Outlet />}</BottomSheet>
       </div>
     </QueryProvider>
@@ -99,29 +108,36 @@ export function ErrorBoundary({ error }: { error?: unknown }) {
   }
 
   return (
-    <main className="earth-error-shell">
-      <div className="earth-error-card">
-        <div className="earth-kicker">System exception</div>
-        <div className="earth-error-code">{status}</div>
-        <h1 className="earth-error-title">{message}</h1>
-        <p className="earth-error-copy">{details}</p>
+    <main className="flex min-h-dvh flex-col items-center justify-center p-4">
+      <div className="w-full max-w-md rounded-xl border bg-card p-8 text-center [box-shadow:0_8px_40px_rgb(0_0_0_/_0.12),0_2px_8px_rgb(0_0_0_/_0.06)]">
+        <p className="font-mono text-xs tracking-widest uppercase text-muted-foreground">
+          System exception
+        </p>
+        <p className="mt-2 text-6xl font-bold text-destructive">{status}</p>
+        <h1 className="mt-2 text-xl font-semibold tracking-tight">{message}</h1>
+        <p className="mt-2 text-sm text-muted-foreground">{details}</p>
 
-        <div className="earth-error-actions">
+        <div className="mt-6 flex justify-center gap-4">
           <button
             onClick={() => window.location.reload()}
-            className="earth-button earth-button--primary"
+            className="inline-flex min-h-9 items-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground"
           >
             Reload mission
           </button>
-          <a href="/" className="earth-button earth-button--secondary">
+          <a
+            href="/"
+            className="inline-flex min-h-9 items-center rounded-md border px-4 text-sm font-medium"
+          >
             Return home
           </a>
         </div>
 
         {stack && import.meta.env.DEV && (
-          <details className="earth-error-stack">
-            <summary>Stack trace</summary>
-            <pre>
+          <details className="mt-6 text-left">
+            <summary className="cursor-pointer text-xs font-semibold text-muted-foreground">
+              Stack trace
+            </summary>
+            <pre className="mt-2 overflow-x-auto rounded bg-muted p-3 text-xs">
               <code>{stack}</code>
             </pre>
           </details>
