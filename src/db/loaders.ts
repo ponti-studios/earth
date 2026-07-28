@@ -55,7 +55,5 @@ export async function populateTflCameras(options: PopulateTflOptions = {}) {
   }
 
   const count = await db.select().from(tflCameras);
-  console.log(
-    `TFL cameras population completed! Total cameras in database: ${count.length}`,
-  );
+  console.log(`TFL cameras population completed! Total cameras in database: ${count.length}`);
 }

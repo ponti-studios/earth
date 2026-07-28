@@ -1,0 +1,7 @@
+{
+  "tabWidth": 2,
+  "sortTailwindcss": {
+    "functions": ["clsx", "cn"],
+    "preserveWhitespace": true
+  }
+}

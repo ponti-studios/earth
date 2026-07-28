@@ -9,6 +9,7 @@
     "start": "react-router-serve ./build/server/index.js --port=${PORT:-3000}",
     "lint": "oxlint app src scripts --fix",
     "format": "oxfmt app src scripts --write",
+    "test": "echo 'no tests'",
     "typecheck": "react-router typegen && tsc",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "tsx scripts/migrate.ts",
