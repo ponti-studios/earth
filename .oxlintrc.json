@@ -2,7 +2,7 @@
   "plugins": ["unicorn", "typescript", "oxc"],
   "rules": {
     "no-unused-vars": "warn",
-    "no-explicit-any": "error"
+    "typescript/no-explicit-any": "error"
   },
   "env": { "builtin": true },
   "ignorePatterns": ["**/*.config.*", "build/**"]
