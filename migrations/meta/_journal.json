@@ -8,6 +8,13 @@
       "when": 1785213680495,
       "tag": "0000_slim_ender_wiggin",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791124238776,
+      "tag": "0001_add-places",
+      "breakpoints": true
     }
   ]
 }

@@ -1,8 +1,8 @@
-import { fetchTflCameras } from "~/lib/public-data";
+import { listTflCameras } from "~/lib/server/tfl";
 
 export async function loader() {
   try {
-    const cameras = await fetchTflCameras();
+    const cameras = await listTflCameras();
     return Response.json({ cameras });
   } catch (error) {
     console.error("Error fetching TFL cameras:", error);

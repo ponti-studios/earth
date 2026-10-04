@@ -1,4 +1,11 @@
 export { closeDb, db } from "./connection";
-export { tflCameras } from "./schema";
-export type { TflCamera, NewTflCamera } from "./schema";
+export { placeGeocodeAttempts, places, tflCameras } from "./schema";
+export type {
+  NewPlace,
+  NewPlaceGeocodeAttempt,
+  NewTflCamera,
+  Place,
+  PlaceGeocodeAttempt,
+  TflCamera,
+} from "./schema";
 export * from "drizzle-orm";
