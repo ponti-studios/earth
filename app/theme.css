@@ -1,0 +1,53 @@
+/*
+ * Earth app theme — the blessed escape hatch.
+ * App-owned visual values live here and ONLY here, never scattered in
+ * components. Consumes Mono tokens, never raw values.
+ */
+
+.search-shell [data-slot="command"] {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  overflow: visible;
+}
+
+/* The field: a quiet pill. Focus is a border-color shift, never a glow. */
+.search-shell [data-slot="command-input-wrapper"] {
+  height: 2.75rem;
+  padding-inline: 1rem;
+  gap: 0.625rem;
+  border: 1px solid var(--color-border);
+  border-radius: 9999px;
+  background: var(--color-card);
+  transition: border-color 150ms ease-out;
+}
+
+.search-shell [data-slot="command"]:focus-within [data-slot="command-input-wrapper"] {
+  border-color: var(--color-foreground);
+}
+
+.search-shell [data-slot="command-input"],
+.search-shell [data-slot="command-input"]:focus,
+.search-shell [data-slot="command-input"]:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.search-shell [data-slot="command-input-wrapper"] svg {
+  color: var(--color-tertiary);
+  transition: color 150ms ease-out;
+}
+
+.search-shell [data-slot="command"]:focus-within [data-slot="command-input-wrapper"] svg {
+  color: var(--text-secondary);
+}
+
+/* The results: a detached floating panel, not a continuation of the field. */
+.search-shell [data-slot="command-list-container"] {
+  margin-top: 0.5rem;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}

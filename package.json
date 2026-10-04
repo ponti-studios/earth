@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "react-router dev",
+    "dev": "portless",
+    "dev:app": "react-router dev",
     "build": "react-router build",
     "start": "react-router-serve ./build/server/index.js --port=${PORT:-3000}",
     "lint": "oxlint app src scripts --fix",
@@ -13,10 +14,11 @@
     "typecheck": "react-router typegen && tsc",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "tsx scripts/migrate.ts",
+    "db:enrich-places": "tsx scripts/enrich-places.ts",
     "seed:tfl": "tsx scripts/seed-tfl.ts"
   },
   "dependencies": {
-    "@ponti-studios/ui": "0.4.0",
+    "@ponti-studios/ui": "file:../../ui",
     "@react-router/node": "^8.2.0",
     "@react-router/serve": "^8.2.0",
     "@tanstack/react-query": "^5.101.3",
@@ -24,7 +26,7 @@
     "drizzle-orm": "^0.45.2",
     "isbot": "^5.2.1",
     "lucide-static": "^1.27.0",
-    "maplibre-gl": "^6.0.0",
+    "maplibre-gl": "^4.7.1",
     "postgres": "^3.4.9",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
@@ -42,10 +44,15 @@
     "drizzle-kit": "^0.31.10",
     "oxfmt": "0.56.0",
     "oxlint": "^1.71.0",
+    "portless": "0.15.6",
     "tsx": "^4.23.1",
     "typescript": "6.0.3",
     "vite": "^8.1.5",
     "vite-plugin-devtools-json": "^1.1.0"
   },
-  "packageManager": "pnpm@10.30.3"
+  "packageManager": "pnpm@10.30.3",
+  "portless": {
+    "name": "earth",
+    "script": "dev:app"
+  }
 }
