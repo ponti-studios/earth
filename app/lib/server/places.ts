@@ -93,6 +93,21 @@ export async function saveReviewQuery(placeId: number, reviewQuery: string) {
     .where(eq(places.id, placeId));
 }
 
+export async function renamePlace(placeId: number, name: string) {
+  const trimmed = name.trim();
+  if (!trimmed) throw new Error("name cannot be blank");
+  if (trimmed.length > 200) throw new Error("name is too long");
+  await db
+    .update(places)
+    .set({ name: trimmed, updatedAt: new Date() })
+    .where(eq(places.id, placeId));
+}
+
+export async function deletePlace(placeId: number) {
+  await db.delete(placeGeocodeAttempts).where(eq(placeGeocodeAttempts.placeId, placeId));
+  await db.delete(places).where(eq(places.id, placeId));
+}
+
 export async function acceptGeocodeResult(placeId: number, query: string, result: GeocodeResult) {
   await db
     .update(places)

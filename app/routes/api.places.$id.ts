@@ -1,6 +1,8 @@
 import {
   acceptGeocodeResult,
+  deletePlace,
   markNotAPlace,
+  renamePlace,
   saveReviewQuery,
 } from "~/lib/server/places";
 
@@ -22,6 +24,10 @@ export async function action({
   try {
     if (intent === "save-query") {
       await saveReviewQuery(id, query);
+    } else if (intent === "rename") {
+      await renamePlace(id, String(form.get("name") ?? ""));
+    } else if (intent === "delete") {
+      await deletePlace(id);
     } else if (intent === "not-a-place") {
       await markNotAPlace(id, query || "manual review");
     } else if (intent === "accept") {

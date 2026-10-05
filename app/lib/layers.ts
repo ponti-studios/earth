@@ -6,13 +6,14 @@
 // Visibility is URL-driven (?layers=cameras,places) so views are shareable.
 
 export const LAYERS = [
-  { id: "cameras", label: "Cameras" },
-  { id: "places", label: "Places" },
+  { id: "cameras", label: "Cameras", icon: "📷" },
+  { id: "places", label: "Places", icon: "📍" },
+  { id: "stations", label: "Trains", icon: "🚇" },
 ] as const;
 
 export type LayerId = (typeof LAYERS)[number]["id"];
 
-export const DEFAULT_LAYERS: LayerId[] = ["cameras", "places"];
+export const DEFAULT_LAYERS: LayerId[] = ["cameras", "places", "stations"];
 
 export function parseLayers(param: string | null): LayerId[] {
   if (!param) return [...DEFAULT_LAYERS];

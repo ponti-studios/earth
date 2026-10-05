@@ -14,13 +14,14 @@ import CameraDetail from "./components/CameraDetail";
 import LayerToggle from "./components/LayerToggle";
 import MapLibreViewer from "./components/MapLibreViewer";
 import PlaceDetail from "./components/PlaceDetail";
+import StationDetail from "./components/StationDetail";
 import QueryProvider from "./components/QueryProvider";
 import SearchBar from "./components/SearchBar";
 import SheetSkeleton from "./components/SheetSkeleton";
 import { BottomSheet } from "@ponti-studios/ui/overlays";
 import { parseLayers, serializeLayers } from "./lib/layers";
 import { getPlace, getPlaceAttempts } from "./lib/server/places";
-import { getTflCamera } from "./lib/server/tfl";
+import { getTflCamera, getTflStation, nearbyTflPoints } from "./lib/server/tfl";
 import type { Route } from "./+types/root";
 
 function ClientOnly({ children }: { children: React.ReactNode }) {
@@ -90,7 +91,20 @@ export async function loader({ request }: Route.LoaderArgs) {
     const place = await getPlace(id).catch(() => null);
     if (!place) return { selection: null, layersParam };
     const attempts = await getPlaceAttempts(id).catch(() => []);
-    return { selection: { kind: "place" as const, place, attempts }, layersParam };
+    const nearby =
+      place.latitude != null && place.longitude != null
+        ? await nearbyTflPoints(place.latitude, place.longitude).catch(() => ({
+            stations: [],
+            cameras: [],
+          }))
+        : { stations: [], cameras: [] };
+    return { selection: { kind: "place" as const, place, attempts, nearby }, layersParam };
+  }
+
+  if (sel?.startsWith("station:")) {
+    const station = await getTflStation(sel.slice("station:".length)).catch(() => null);
+    if (!station) return { selection: null, layersParam };
+    return { selection: { kind: "station" as const, station }, layersParam };
   }
 
   return { selection: null, layersParam };
@@ -139,8 +153,11 @@ export default function App({ loaderData }: Route.ComponentProps) {
             <PlaceDetail
               place={selection.place}
               attempts={selection.attempts}
+              nearby={selection.nearby}
               layersParam={layersParam}
             />
+          ) : selection?.kind === "station" ? (
+            <StationDetail station={selection.station} layersParam={layersParam} />
           ) : (
             <Outlet />
           )}

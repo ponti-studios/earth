@@ -17,8 +17,22 @@ function getDatabaseUrl(): string {
 
 function initializeDb() {
   if (_db) return _db;
-  _client = postgres(getDatabaseUrl());
+  // Reuse one client across Vite HMR reloads in dev: every re-executed
+  // module otherwise opens a fresh pool and Postgres eventually refuses
+  // connections ("too many clients already").
+  const globalForDb = globalThis as unknown as {
+    __earthDb?: ReturnType<typeof drizzle>;
+    __earthClient?: postgres.Sql;
+  };
+  if (globalForDb.__earthDb && globalForDb.__earthClient) {
+    _db = globalForDb.__earthDb;
+    _client = globalForDb.__earthClient;
+    return _db;
+  }
+  _client = postgres(getDatabaseUrl(), { max: 5 });
   _db = drizzle(_client, { schema });
+  globalForDb.__earthDb = _db;
+  globalForDb.__earthClient = _client;
   return _db;
 }
 

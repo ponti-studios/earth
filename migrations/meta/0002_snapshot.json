@@ -1,0 +1,416 @@
+{
+  "id": "8c7b92db-88d3-4327-a52f-bafd666509ef",
+  "prevId": "bd521732-0df4-4e54-ab88-213fc2ea910d",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.place_geocode_attempts": {
+      "name": "place_geocode_attempts",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "place_id": {
+          "name": "place_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "query": {
+          "name": "query",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "status": {
+          "name": "status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "result_summary": {
+          "name": "result_summary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "place_geocode_attempts_place_id_places_id_fk": {
+          "name": "place_geocode_attempts_place_id_places_id_fk",
+          "tableFrom": "place_geocode_attempts",
+          "tableTo": "places",
+          "columnsFrom": [
+            "place_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.places": {
+      "name": "places",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "place_type": {
+          "name": "place_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "url": {
+          "name": "url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "latitude": {
+          "name": "latitude",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "longitude": {
+          "name": "longitude",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "formatted_address": {
+          "name": "formatted_address",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "city": {
+          "name": "city",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "state": {
+          "name": "state",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "postal_code": {
+          "name": "postal_code",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "country": {
+          "name": "country",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "country_code": {
+          "name": "country_code",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "geocoded_at": {
+          "name": "geocoded_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "metadata": {
+          "name": "metadata",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "review_status": {
+          "name": "review_status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "review_reason": {
+          "name": "review_reason",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "review_query": {
+          "name": "review_query",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "review_updated_at": {
+          "name": "review_updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "review_decision_at": {
+          "name": "review_decision_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "review_decision_source": {
+          "name": "review_decision_source",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "last_geocode_status": {
+          "name": "last_geocode_status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "last_geocode_query": {
+          "name": "last_geocode_query",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "last_geocode_result_summary": {
+          "name": "last_geocode_result_summary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.tfl_cameras": {
+      "name": "tfl_cameras",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "tfl_id": {
+          "name": "tfl_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "common_name": {
+          "name": "common_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "available": {
+          "name": "available",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_url": {
+          "name": "image_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "video_url": {
+          "name": "video_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "view": {
+          "name": "view",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "lat": {
+          "name": "lat",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "lng": {
+          "name": "lng",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "tfl_cameras_tfl_id_unique": {
+          "name": "tfl_cameras_tfl_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "tfl_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.tfl_stations": {
+      "name": "tfl_stations",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "tfl_id": {
+          "name": "tfl_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "common_name": {
+          "name": "common_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "lat": {
+          "name": "lat",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "lng": {
+          "name": "lng",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "modes": {
+          "name": "modes",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "''"
+        },
+        "lines": {
+          "name": "lines",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'[]'"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "tfl_stations_tfl_id_unique": {
+          "name": "tfl_stations_tfl_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "tfl_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

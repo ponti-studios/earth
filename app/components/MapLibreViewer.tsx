@@ -8,9 +8,10 @@ import Map, {
   type MapLayerMouseEvent,
 } from "react-map-gl/maplibre";
 import { useSearchParams } from "react-router";
-import type { TflCamera } from "~/lib/server/tfl";
+import type { TflCamera, TflStation } from "~/lib/server/tfl";
 import { parseLayers, serializeLayers } from "~/lib/layers";
 import { useTflCameras } from "../lib/hooks/use-tfl-cameras";
+import { useTflStations } from "../lib/hooks/use-tfl-stations";
 
 type PlacePoint = {
   id: number;
@@ -47,6 +48,17 @@ function placesToGeoJSON(places: PlacePoint[]): GeoJSON.FeatureCollection<GeoJSO
   };
 }
 
+function stationsToGeoJSON(stations: TflStation[]): GeoJSON.FeatureCollection<GeoJSON.Point> {
+  return {
+    type: "FeatureCollection",
+    features: stations.map((s) => ({
+      type: "Feature",
+      geometry: { type: "Point", coordinates: [s.lng, s.lat] },
+      properties: { id: s.tflId },
+    })),
+  };
+}
+
 function usePlaces() {
   const [places, setPlaces] = useState<PlacePoint[] | null>(null);
   useEffect(() => {
@@ -69,16 +81,22 @@ function usePlaces() {
   return places;
 }
 
+// Map markers: filled badges, not outline glyphs. Cameras are dark rounded
+// badges with a white glyph (plus a green live dot); stations are a proper
+// roundel sandwich (red disc under a white disc).
+const CAMERA_GLYPH =
+  '<path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z"/><circle cx="12" cy="13" r="3"/>';
+
 const CAMERA_SVG_LIVE =
   "data:image/svg+xml;base64," +
   btoa(
-    '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z"/><circle cx="12" cy="13" r="3"/></svg>',
+    `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><rect x="1" y="1" width="22" height="22" rx="6" fill="#171717"/><g transform="translate(3.2,4.2) scale(0.73)" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${CAMERA_GLYPH}</g><circle cx="17.5" cy="6" r="2.6" fill="#22c55e" stroke="#171717" stroke-width="1.2"/></svg>`,
   );
 
 const CAMERA_SVG_OFFLINE =
   "data:image/svg+xml;base64," +
   btoa(
-    '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z"/><circle cx="12" cy="13" r="3"/></svg>',
+    `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><rect x="1" y="1" width="22" height="22" rx="6" fill="#575757"/><g transform="translate(3.2,4.2) scale(0.73)" fill="none" stroke="#ffffff" stroke-opacity="0.75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${CAMERA_GLYPH}</g></svg>`,
   );
 
 function CameraIcons() {
@@ -103,14 +121,17 @@ function CameraIcons() {
 
 export default function MapLibreViewer() {
   const { data: cameras } = useTflCameras();
+  const { data: stations } = useTflStations();
   const places = usePlaces();
   const [params, setParams] = useSearchParams();
   const enabled = parseLayers(params.get("layers"));
   const showCameras = enabled.includes("cameras");
   const showPlaces = enabled.includes("places");
+  const showStations = enabled.includes("stations");
 
   const geojson = cameras && showCameras ? cameraToGeoJSON(cameras) : null;
   const placesGeojson = places && showPlaces ? placesToGeoJSON(places) : null;
+  const stationsGeojson = stations && showStations ? stationsToGeoJSON(stations) : null;
 
   const select = useCallback(
     (sel: string) => {
@@ -137,6 +158,9 @@ export default function MapLibreViewer() {
       } else if (feature.layer.id === "places") {
         const { id } = feature.properties as { id: number };
         select(`place:${id}`);
+      } else if (feature.layer.id === "stations") {
+        const { id } = feature.properties as { id: string };
+        select(`station:${id}`);
       }
     },
     [select],
@@ -151,6 +175,7 @@ export default function MapLibreViewer() {
         interactiveLayerIds={[
           ...(geojson ? ["cameras"] : []),
           ...(placesGeojson ? ["places"] : []),
+          ...(stationsGeojson ? ["stations"] : []),
         ]}
         onClick={onClick}
         cursor="auto"
@@ -170,8 +195,29 @@ export default function MapLibreViewer() {
                   "camera-live",
                   "camera-offline",
                 ],
-                "icon-size": 1.25,
+                "icon-size": 1,
                 "icon-allow-overlap": true,
+              }}
+            />
+          </Source>
+        )}
+
+        {stationsGeojson && (
+          <Source id="stations-src" type="geojson" data={stationsGeojson}>
+            <Layer
+              id="stations-halo"
+              type="circle"
+              paint={{
+                "circle-radius": 8,
+                "circle-color": "#e32017",
+              }}
+            />
+            <Layer
+              id="stations"
+              type="circle"
+              paint={{
+                "circle-radius": 5,
+                "circle-color": "#ffffff",
               }}
             />
           </Source>
