@@ -1,0 +1,423 @@
+/*
+ * DESIGN SYSTEM STYLESHEET — @ponti-studios/ui
+ *
+ * This file provides the design tokens and shared component styles consumed
+ * by your project. It does NOT import Tailwind CSS — your project owns that.
+ *
+ * Required in your project's entry CSS BEFORE this import:
+ *
+ *   @import "tailwindcss";
+ *   @import "@ponti-studios/ui/styles.css";
+ *
+ * If you omit the Tailwind import you may see missing CSS variables
+ * (e.g., --tw-shadow-color) or utilities that fail to resolve.
+ */
+
+@reference "tailwindcss";
+@import "./tokens/generated/foundations.css";
+@import "./tokens/generated/light.css";
+@import "./tokens/generated/dark.css" (prefers-color-scheme: dark);
+@import "./tokens/generated/dark-class.css";
+@import "./animations.css";
+@import "./nokia.css";
+
+@theme {
+  --animate-accordion-down: accordion-down 200ms ease-out;
+  --animate-accordion-up: accordion-up 200ms ease-out;
+  --animate-in: fade-in 150ms ease-out, zoom-in 150ms ease-out;
+  --animate-out: fade-out 120ms ease-in, zoom-out 120ms ease-in;
+  --animate-fade-in: fade-in 150ms ease-out;
+  --animate-fade-out: fade-out 120ms ease-in;
+  --animate-zoom-in: zoom-in 150ms ease-out;
+  --animate-zoom-out: zoom-out 120ms ease-in;
+  --animate-progress-shimmer: progress-shimmer 1.1s linear infinite;
+}
+
+@utility fade-in-0 {
+  animation-name: fade-in;
+}
+@utility fade-out-0 {
+  animation-name: fade-out;
+}
+@utility zoom-in-95 {
+  animation-name: zoom-in;
+}
+@utility zoom-out-95 {
+  animation-name: zoom-out;
+}
+
+/* 
+  Values are generated from the DTCG source; 
+  this file only names the roles consumed by web components. 
+*/
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--text-primary);
+  --color-card: var(--card);
+  --color-card-foreground: var(--text-primary);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--text-primary);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--text-primary);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--text-secondary);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  /* Distinct from --color-accent: this pairs with the page background for
+   * standalone text/icons/borders (inline links, upload affordances). */
+  --color-accent-text: var(--text-accent);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  /* Distinct from --color-destructive: that pairs with white for solid
+   * backgrounds (buttons, badges) and is the same value in both themes.
+   * This pairs with the page background for standalone text (error
+   * messages, alert copy) and must differ per theme to stay AA-compliant. */
+  --color-destructive-text: var(--text-destructive);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-success-text: var(--text-success);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-warning-text: var(--text-warning);
+  --color-border: var(--border-default);
+  --color-input: var(--border-default);
+  --color-ring: var(--focus-ring);
+}
+
+@utility display-1 {
+  font-size: clamp(2.5rem, 5vw, 6rem);
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+}
+@utility display-2 {
+  font-size: clamp(2rem, 3vw, 3.5rem);
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.15;
+  letter-spacing: var(--tracking-tight);
+}
+@utility ref-tag {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--tertiary);
+  letter-spacing: var(--tracking-wide);
+}
+/* Quiet state-change "settle" — used on state-bearing indicators
+ * (Badge, StatusBadge, FilterChip) when their represented value changes. */
+@utility state-settle {
+  transition:
+    transform 120ms ease-out,
+    opacity 120ms ease-out;
+}
+@utility pb-safe-area-inset-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+@utility mb-safe-area-inset-bottom {
+  margin-bottom: env(safe-area-inset-bottom);
+}
+@utility min-h-screen {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+@utility min-h-screen-dynamic {
+  min-height: 100dvh;
+}
+/* ── scroll-fade ──
+ * Progressive opacity mask on scroll-container edges.
+ * Uses CSS custom properties so consumers can override the fade size
+ * or disable the mask without a class order dependency:
+ *
+ *   <div class="scroll-fade-x overflow-x-auto [--scroll-fade-size:24px]">
+ *   <div class="scroll-fade-y overflow-y-auto scroll-fade-none md:scroll-fade">
+ *
+ * Default fade size: 16 px  (scoped to the element via inline var).
+ * Disable with scroll-fade-none (sets --scroll-fade-mask: none). */
+@utility scroll-fade-x {
+  mask-image: var(
+    --scroll-fade-mask,
+    linear-gradient(
+      to right,
+      transparent,
+      black var(--scroll-fade-size, 16px),
+      black calc(100% - var(--scroll-fade-size, 16px)),
+      transparent
+    )
+  );
+}
+@utility scroll-fade-y {
+  mask-image: var(
+    --scroll-fade-mask,
+    linear-gradient(
+      to bottom,
+      transparent,
+      black var(--scroll-fade-size, 16px),
+      black calc(100% - var(--scroll-fade-size, 16px)),
+      transparent
+    )
+  );
+}
+@utility scroll-fade-l {
+  mask-image: var(
+    --scroll-fade-mask,
+    linear-gradient(to right, transparent, black var(--scroll-fade-size, 16px))
+  );
+}
+@utility scroll-fade-r {
+  mask-image: var(
+    --scroll-fade-mask,
+    linear-gradient(to left, transparent, black var(--scroll-fade-size, 16px))
+  );
+}
+@utility scroll-fade-t {
+  mask-image: var(
+    --scroll-fade-mask,
+    linear-gradient(to bottom, transparent, black var(--scroll-fade-size, 16px))
+  );
+}
+@utility scroll-fade-b {
+  mask-image: var(
+    --scroll-fade-mask,
+    linear-gradient(to top, transparent, black var(--scroll-fade-size, 16px))
+  );
+}
+@utility scroll-fade-none {
+  --scroll-fade-mask: none;
+}
+/* Hides the native scrollbar so a custom overlay affordance (ScrollArea's
+ * Scrollbar/Thumb) can stand in for it. */
+@utility scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+@utility h-screen {
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* Responsive dropdown surfaces keep their menu/listbox semantics while
+ * becoming thumb-reachable sheets on compact viewports. */
+.ui-mobile-sheet-backdrop {
+  display: none;
+}
+.ui-mobile-sheet-positioner {
+  z-index: var(--z-index-50);
+}
+.ui-mobile-sheet-close {
+  display: none;
+}
+@media (max-width: 767px) {
+  .ui-mobile-sheet-backdrop {
+    position: fixed;
+    z-index: var(--z-index-50);
+    display: block;
+    background: color-mix(in srgb, var(--overlay-scrim) 50%, transparent);
+    inset: 0;
+  }
+  .ui-mobile-sheet-positioner {
+    position: fixed !important;
+    z-index: calc(var(--z-index-50) + 1) !important;
+    display: block;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    transform: none !important;
+    inset: auto 0 0 !important;
+  }
+  .ui-mobile-sheet-popup {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    max-height: min(75dvh, var(--available-height, 75dvh)) !important;
+    border-start-start-radius: var(--radius-2xl) !important;
+    border-start-end-radius: var(--radius-2xl) !important;
+    border-end-start-radius: 0 !important;
+    border-end-end-radius: 0 !important;
+    padding-bottom: max(var(--spacing-scale-4), env(safe-area-inset-bottom)) !important;
+    overscroll-behavior: contain;
+  }
+  .ui-mobile-popover-popup {
+    padding-block-start: calc(var(--spacing-scale-12) + var(--spacing-scale-2)) !important;
+  }
+  .ui-mobile-sheet-close {
+    position: absolute;
+    z-index: var(--z-index-10);
+    top: var(--spacing-scale-2);
+    right: var(--spacing-scale-3);
+    display: grid;
+    width: var(--spacing-scale-12);
+    height: var(--spacing-scale-12);
+    place-items: center;
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-full);
+    color: var(--text-secondary);
+    background: var(--background);
+    cursor: pointer;
+  }
+  .ui-mobile-sheet-close svg {
+    width: var(--spacing-scale-5);
+    height: var(--spacing-scale-5);
+  }
+  [data-slot="dropdown-menu-content"] [data-slot^="dropdown-menu-item"],
+  [data-slot="select-content"] [data-slot="select-item"] {
+    min-height: var(--spacing-scale-12);
+  }
+  [data-slot="dropdown-menu-content"][data-open],
+  [data-slot="select-content"][data-open],
+  [data-slot="popover-content"][data-open] {
+    animation: sheet-slide-in-bottom 300ms var(--ease-drawer);
+  }
+  [data-slot="dropdown-menu-content"][data-closed],
+  [data-slot="select-content"][data-closed],
+  [data-slot="popover-content"][data-closed] {
+    animation: sheet-slide-out-bottom 200ms var(--ease-drawer);
+  }
+}
+
+/* Shared layout rhythm. Product components own their layout; this does not
+ * define visual component families. */
+.page-shell {
+  @apply relative mx-auto flex w-full flex-col gap-12 px-4 py-16 md:gap-16 md:px-6 md:py-20;
+}
+.page-shell-detail {
+  @apply relative mx-auto flex w-full flex-col gap-10 px-4 py-16 md:gap-12 md:px-6 md:py-20;
+}
+.page-bleed {
+  @apply flex w-full flex-col;
+}
+.layout-stack {
+  @apply flex flex-col gap-4;
+}
+.list-row {
+  @apply flex gap-4 px-0 py-6 md:gap-6 md:py-8;
+}
+.list-media {
+  @apply border-border bg-card relative isolate flex shrink-0 items-center justify-center overflow-hidden rounded-md border p-2 shadow-none;
+}
+.list-media-wide {
+  @apply h-14 w-32;
+}
+.list-media-square {
+  @apply size-10 sm:size-12;
+}
+.list-media-placeholder {
+  @apply pointer-events-none absolute inset-0 flex items-center justify-center gap-1.5 transition-opacity duration-150;
+}
+.section {
+  @apply border-border flex flex-col gap-4 border-b px-4 py-12 md:px-6 md:py-16;
+}
+.section-hero {
+  @apply gap-6 py-16 md:py-20;
+}
+.detail-hero {
+  @apply gap-4 py-10 md:gap-6 md:py-16;
+}
+.section-compact {
+  @apply gap-4 py-8 md:py-12;
+}
+.detail-navigation {
+  @apply flex flex-col gap-6 sm:flex-row sm:justify-between;
+}
+.detail-navigation-link {
+  @apply flex min-h-9 flex-col justify-center gap-1;
+}
+
+.ui-flat-card {
+  @apply bg-card border-border rounded-md border p-3;
+}
+
+.ui-data-label {
+  @apply text-muted-foreground text-xs font-medium uppercase tracking-wider;
+}
+
+.ui-data-value {
+  @apply text-foreground text-base font-semibold tabular-nums;
+}
+
+.ui-eyebrow {
+  @apply text-muted-foreground text-xs font-medium uppercase tracking-widest;
+}
+
+/* Command rows: action hints stay silent until the row is highlighted,
+ * so the list scans clean and the affordance appears exactly when usable. */
+[data-slot="command-item"] [data-slot="command-shortcut"] {
+  opacity: 0;
+  transition: opacity 120ms ease-out;
+}
+[data-slot="command-item"][data-highlighted] [data-slot="command-shortcut"] {
+  opacity: 1;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+    }
+  }
+  /* Manual override: toggling `.dark` on <html> beats the OS preference. */
+  :root.dark {
+    color-scheme: dark;
+  }
+  html,
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  * {
+    border-color: var(--color-border, currentColor);
+  }
+  *:focus {
+    outline: none;
+  }
+  *:focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+    border-radius: inherit;
+  }
+  button {
+    cursor: pointer;
+    font-family: inherit;
+  }
+  label {
+    color: var(--color-foreground);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: 1;
+  }
+  :where(.peer:disabled) ~ label {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

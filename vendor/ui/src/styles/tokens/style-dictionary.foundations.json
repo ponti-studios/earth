@@ -1,0 +1,21 @@
+{
+  "source": ["src/styles/tokens/source/foundations.tokens.json"],
+  "platforms": {
+    "css": {
+      "transformGroup": "css",
+      "buildPath": "src/styles/tokens/generated/",
+      "files": [{ "destination": "foundations.css", "format": "css/variables" }]
+    },
+    "typescript": {
+      "transformGroup": "js",
+      "buildPath": "src/styles/tokens/generated/",
+      "files": [
+        {
+          "destination": "foundations.generated.ts",
+          "format": "javascript/esm",
+          "options": { "minify": true }
+        }
+      ]
+    }
+  }
+}

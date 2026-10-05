@@ -1,0 +1,21 @@
+{
+  "source": ["src/styles/tokens/source/light.tokens.json"],
+  "platforms": {
+    "css": {
+      "transformGroup": "css",
+      "buildPath": "src/styles/tokens/generated/",
+      "files": [{ "destination": "light.css", "format": "css/variables" }]
+    },
+    "typescript": {
+      "transformGroup": "js",
+      "buildPath": "src/styles/tokens/generated/",
+      "files": [
+        {
+          "destination": "light.colors.generated.ts",
+          "format": "javascript/esm",
+          "options": { "minify": true }
+        }
+      ]
+    }
+  }
+}

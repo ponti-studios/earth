@@ -16,10 +16,11 @@
     "db:migrate": "tsx scripts/migrate.ts",
     "db:enrich-places": "tsx scripts/enrich-places.ts",
     "seed:tfl": "tsx scripts/seed-tfl.ts",
-    "seed:stations": "tsx scripts/seed-stations.ts"
+    "seed:stations": "tsx scripts/seed-stations.ts",
+    "sync-ui": "rm -rf vendor/ui/src && cp -r ../../ui/src vendor/ui/src && cp ../../ui/package.json vendor/ui/package.json && pnpm install"
   },
   "dependencies": {
-    "@ponti-studios/ui": "file:../../ui",
+    "@ponti-studios/ui": "file:./vendor/ui",
     "@react-router/node": "^8.2.0",
     "@react-router/serve": "^8.2.0",
     "@tanstack/react-query": "^5.101.3",

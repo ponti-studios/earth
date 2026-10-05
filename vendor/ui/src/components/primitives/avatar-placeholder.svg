@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Portrait placeholder</title>
+  <desc id="desc">An illustrated portrait with warm coral and blue tones.</desc>
+  <rect width="256" height="256" fill="#dce8f2"/>
+  <circle cx="202" cy="54" r="34" fill="#ffb36b"/>
+  <path d="M0 214c36-34 74-47 112-39 37 8 63 34 79 81H0z" fill="#185a72"/>
+  <path d="M83 256c5-49 25-78 73-78 47 0 68 29 73 78z" fill="#ff704d"/>
+  <path d="M91 111c0-43 28-73 66-73s66 30 66 73c0 42-25 72-66 72s-66-30-66-72z" fill="#c97852"/>
+  <path d="M88 111c-2-46 25-79 70-79 42 0 68 29 68 72-14-16-31-26-51-30-23 27-52 39-87 37z" fill="#243746"/>
+  <circle cx="128" cy="116" r="5" fill="#243746"/>
+  <circle cx="176" cy="116" r="5" fill="#243746"/>
+  <path d="M137 145c8 6 17 6 25 0" fill="none" stroke="#243746" stroke-linecap="round" stroke-width="5"/>
+</svg>

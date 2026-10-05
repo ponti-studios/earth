@@ -1,0 +1,138 @@
+{
+  "$extensions": {
+    "org.ponti.license": "MIT",
+    "org.ponti.identity": "mono"
+  },
+  "background": {
+    "$type": "color",
+    "$value": "rgb(10, 10, 10)"
+  },
+  "card": {
+    "$type": "color",
+    "$value": "rgb(17, 17, 17)"
+  },
+  "secondary": {
+    "$type": "color",
+    "$value": "rgb(26, 26, 26)"
+  },
+  "popover": {
+    "$type": "color",
+    "$value": "rgb(17, 17, 17)"
+  },
+  "muted": {
+    "$type": "color",
+    "$value": "rgb(20, 20, 20)"
+  },
+  "text-primary": {
+    "$type": "color",
+    "$value": "rgb(250, 250, 250)"
+  },
+  "text-secondary": {
+    "$type": "color",
+    "$value": "rgb(163, 163, 163)"
+  },
+  "tertiary": {
+    "$type": "color",
+    "$value": "{text-secondary}"
+  },
+  "primary": {
+    "$type": "color",
+    "$value": "rgb(237, 237, 237)"
+  },
+  "accent": {
+    "$type": "color",
+    "$value": "rgb(30, 41, 59)"
+  },
+  "destructive": {
+    "$type": "color",
+    "$value": "rgb(220, 38, 38)"
+  },
+  "success": {
+    "$type": "color",
+    "$value": "rgb(34, 197, 94)"
+  },
+  "warning": {
+    "$type": "color",
+    "$value": "rgb(245, 158, 11)"
+  },
+  "text-success": {
+    "$type": "color",
+    "$value": "rgb(74, 222, 128)"
+  },
+  "text-warning": {
+    "$type": "color",
+    "$value": "rgb(252, 211, 77)"
+  },
+  "success-foreground": {
+    "$type": "color",
+    "$value": "rgb(10, 10, 10)"
+  },
+  "warning-foreground": {
+    "$type": "color",
+    "$value": "rgb(10, 10, 10)"
+  },
+  "primary-foreground": {
+    "$type": "color",
+    "$value": "rgb(10, 10, 10)"
+  },
+  "accent-foreground": {
+    "$type": "color",
+    "$value": "rgb(147, 197, 253)"
+  },
+  "destructive-foreground": {
+    "$type": "color",
+    "$value": "rgb(255, 255, 255)"
+  },
+  "text-destructive": {
+    "$type": "color",
+    "$value": "rgb(252, 165, 165)"
+  },
+  "text-accent": {
+    "$type": "color",
+    "$value": "rgb(96, 165, 250)"
+  },
+  "border-default": {
+    "$type": "color",
+    "$value": "rgb(38, 38, 38)"
+  },
+  "focus-ring": {
+    "$type": "color",
+    "$value": "rgb(59, 130, 246)"
+  },
+  "chart-1": {
+    "$type": "color",
+    "$value": "rgb(59, 130, 246)"
+  },
+  "chart-2": {
+    "$type": "color",
+    "$value": "rgb(237, 237, 237)"
+  },
+  "chart-3": {
+    "$type": "color",
+    "$value": "rgb(115, 115, 115)"
+  },
+  "chart-4": {
+    "$type": "color",
+    "$value": "rgb(147, 197, 253)"
+  },
+  "chart-5": {
+    "$type": "color",
+    "$value": "rgb(63, 63, 70)"
+  },
+  "chart-positive": {
+    "$type": "color",
+    "$value": "rgb(34, 197, 94)"
+  },
+  "chart-negative": {
+    "$type": "color",
+    "$value": "rgb(239, 68, 68)"
+  },
+  "chart-neutral": {
+    "$type": "color",
+    "$value": "rgb(163, 163, 163)"
+  },
+  "overlay-scrim": {
+    "$type": "color",
+    "$value": "rgb(0, 0, 0)"
+  }
+}

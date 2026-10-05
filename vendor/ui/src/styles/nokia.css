@@ -1,0 +1,36 @@
+/*
+ * Undocumented "nokia" Navigation variant — Nokia 3310-style monochrome LCD
+ * skin for the mobile Sheet menu. Not part of the public API surface (no
+ * README/Storybook entry); opt in via `<Navigation variant="nokia">`.
+ */
+@theme {
+  --color-nokia-screen: #c8d6a6;
+  --color-nokia-screen-deep: #b0c188;
+  --color-nokia-ink: #26331b;
+  --color-nokia-bezel: #1a1a1a;
+  --font-nokia: ui-monospace, "SF Mono", "Courier New", monospace;
+}
+
+/* No `position: relative` here — SheetContent is `position: fixed` via its
+ * own Tailwind class, and a same-specificity `.nokia-screen { position:
+ * relative }` loaded later in the cascade would silently win and break the
+ * sheet's fixed/inset layout (bit us once already; see labs' app.css). The
+ * `::before` overlay below still gets a positioning context from the
+ * ancestor's `fixed`, so this class never needs to set position itself. */
+.nokia-screen {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 0.05) 0,
+    rgb(0 0 0 / 0.05) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+.nokia-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 12px 2px rgb(0 0 0 / 0.25);
+  pointer-events: none;
+}

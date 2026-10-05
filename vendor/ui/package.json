@@ -1,0 +1,144 @@
+{
+  "name": "@ponti-studios/ui",
+  "version": "1.8.0",
+  "private": false,
+  "description": "Shared UI component library for Ponti Studios",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ponti-studios/ui.git"
+  },
+  "files": [
+    "src",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "type": "module",
+  "sideEffects": [
+    "./src/styles/index.css",
+    "./src/styles/animations.css"
+  ],
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    },
+    "./primitives": {
+      "types": "./src/components/primitives/index.ts",
+      "import": "./src/components/primitives/index.ts"
+    },
+    "./forms": {
+      "types": "./src/components/forms/index.ts",
+      "import": "./src/components/forms/index.ts"
+    },
+    "./feedback": {
+      "types": "./src/components/feedback/index.ts",
+      "import": "./src/components/feedback/index.ts"
+    },
+    "./filters": {
+      "types": "./src/components/filters/index.ts",
+      "import": "./src/components/filters/index.ts"
+    },
+    "./overlays": {
+      "types": "./src/components/overlays/index.ts",
+      "import": "./src/components/overlays/index.ts"
+    },
+    "./navigation": {
+      "types": "./src/components/navigation/index.ts",
+      "import": "./src/components/navigation/index.ts"
+    },
+    "./data-display": {
+      "types": "./src/components/data-display/index.ts",
+      "import": "./src/components/data-display/index.ts"
+    },
+    "./layout": {
+      "types": "./src/components/layout/index.ts",
+      "import": "./src/components/layout/index.ts"
+    },
+    "./utilities": {
+      "types": "./src/lib/index.ts",
+      "import": "./src/lib/index.ts"
+    },
+    "./tokens": {
+      "types": "./src/styles/tokens/index.ts",
+      "import": "./src/styles/tokens/index.ts"
+    },
+    "./tokens/css-vars": {
+      "types": "./src/styles/tokens/css-vars.ts",
+      "import": "./src/styles/tokens/css-vars.ts"
+    },
+    "./native": {
+      "types": "./src/native/index.ts",
+      "react-native": "./src/native/index.ts",
+      "import": "./src/native/index.ts"
+    },
+    "./hooks": {
+      "types": "./src/hooks/index.ts",
+      "import": "./src/hooks/index.ts"
+    },
+    "./styles.css": "./src/styles/index.css",
+    "./animations.css": "./src/styles/animations.css"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "scripts": {
+    "check": "make check",
+    "build": "make build",
+    "test": "make test",
+    "storybook": "make storybook",
+    "format": "make format",
+    "prepack": "make check"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.29.7",
+    "@base-ui/react": "^1.6.0",
+    "@radix-ui/colors": "^3.0.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.24.0",
+    "tailwind-merge": "^3.6.0"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "^5.2.1",
+    "@storybook/addon-a11y": "10.5.6",
+    "@storybook/addon-docs": "10.5.6",
+    "@storybook/addon-links": "10.5.6",
+    "@storybook/addon-onboarding": "10.5.6",
+    "@storybook/addon-themes": "10.5.6",
+    "@storybook/addon-vitest": "10.5.6",
+    "@storybook/react-vite": "10.5.6",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^26.1.1",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitest/browser": "4.1.11",
+    "@vitest/browser-playwright": "4.1.11",
+    "oxfmt": "0.64.0",
+    "oxlint": "^1.74.0",
+    "playwright": "^1.61.1",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "react-native": "0.87.1",
+    "storybook": "10.5.6",
+    "style-dictionary": "5.5.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "7.0.2",
+    "vite": "^8.1.5",
+    "vitest": "4.1.11"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0 || ^19.0.0",
+    "react-dom": "^18.2.0 || ^19.0.0",
+    "react-native": ">=0.80"
+  },
+  "peerDependenciesMeta": {
+    "react-dom": {
+      "optional": true
+    },
+    "react-native": {
+      "optional": true
+    }
+  },
+  "packageManager": "pnpm@11.10.0"
+}

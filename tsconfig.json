@@ -33,5 +33,5 @@
     "noEmit": true
   },
   "include": ["**/*", "**/.server/**/*", "**/.client/**/*", ".react-router/types/**/*"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "vendor", "vendor/ui/src/**/*.stories.tsx"]
 }

@@ -1,0 +1,2 @@
+export { NativeBadge, NativeButton, NativeSurface, NativeTabBar, type NativeBadgeProps, type NativeBadgeVariant, type NativeButtonProps, type NativeButtonSize, type NativeButtonVariant, type NativeSurfaceProps, type NativeTabBarProps, type NativeTabItem } from "./components";
+export { NativeThemeProvider, useNativeTheme, type NativeColorPreference, type NativeTheme, type NativeThemeProviderProps } from "./theme";

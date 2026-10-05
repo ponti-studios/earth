@@ -1,0 +1,227 @@
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--accordion-content-height);
+  }
+}
+@keyframes accordion-up {
+  from {
+    height: var(--accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes zoom-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes zoom-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+@keyframes sheet-slide-in-bottom {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes sheet-slide-out-bottom {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+@keyframes sheet-slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes sheet-slide-out-right {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+@keyframes progress-shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.data-open\:animate-in[data-open],
+.data-open\:animate-in[data-state="open"] {
+  animation:
+    fade-in 150ms ease-out,
+    zoom-in 150ms ease-out;
+}
+.data-closed\:animate-out[data-closed],
+.data-closed\:animate-out[data-state="closed"] {
+  animation:
+    fade-out 120ms ease-in,
+    zoom-out 120ms ease-in;
+}
+
+[data-slot="sheet-overlay"][data-open],
+[data-slot="sheet-overlay"][data-state="open"] {
+  animation: fade-in 400ms var(--ease-out);
+}
+[data-slot="sheet-overlay"][data-closed],
+[data-slot="sheet-overlay"][data-state="closed"] {
+  /* Must stay in lockstep with [data-slot="sheet-content"]'s close duration below (both 200ms) —
+     Base UI gates the whole portal's unmount on this element's own close-animation duration, not
+     the content panel's, so a mismatch here yanks the sliding panel off mid-animation. */
+  animation: fade-out 200ms var(--ease-in);
+}
+
+[data-slot="sheet-content"][data-open],
+[data-slot="sheet-content"][data-state="open"] {
+  animation: sheet-slide-in-bottom 300ms var(--ease-drawer);
+}
+[data-slot="sheet-content"][data-closed],
+[data-slot="sheet-content"][data-state="closed"] {
+  animation: sheet-slide-out-bottom 200ms var(--ease-drawer);
+}
+
+[data-slot="dialog-overlay"][data-open],
+[data-slot="dialog-overlay"][data-state="open"] {
+  animation: fade-in 200ms var(--ease-out);
+}
+[data-slot="dialog-overlay"][data-closed],
+[data-slot="dialog-overlay"][data-state="closed"] {
+  /* Must stay in lockstep with [data-slot="dialog-content"]'s close duration below (both 200ms) —
+     Base UI gates the whole portal's unmount on this element's own close-animation duration, not
+     the content panel's, so a mismatch here yanks the sliding/zooming panel off mid-animation. */
+  animation: fade-out 200ms var(--ease-in);
+}
+
+/* Mobile: bottom sheet, slides up from the edge it's anchored to. */
+[data-slot="dialog-content"][data-open],
+[data-slot="dialog-content"][data-state="open"] {
+  animation: sheet-slide-in-bottom 300ms var(--ease-drawer);
+}
+[data-slot="dialog-content"][data-closed],
+[data-slot="dialog-content"][data-state="closed"] {
+  animation: sheet-slide-out-bottom 200ms var(--ease-drawer);
+}
+
+/* Desktop: centered card, fades and scales in place instead of sliding. */
+@media (min-width: 640px) {
+  [data-slot="dialog-content"][data-open],
+  [data-slot="dialog-content"][data-state="open"] {
+    animation:
+      fade-in 150ms var(--ease-out),
+      zoom-in 150ms var(--ease-out);
+  }
+  [data-slot="dialog-content"][data-closed],
+  [data-slot="dialog-content"][data-state="closed"] {
+    animation:
+      fade-out 200ms var(--ease-in),
+      zoom-out 200ms var(--ease-in);
+  }
+}
+
+@media (min-width: 768px) {
+  [data-slot="sheet-content"][data-open],
+  [data-slot="sheet-content"][data-state="open"] {
+    animation: sheet-slide-in-right 300ms var(--ease-drawer);
+  }
+  [data-slot="sheet-content"][data-closed],
+  [data-slot="sheet-content"][data-state="closed"] {
+    animation: sheet-slide-out-right 200ms var(--ease-drawer);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-in,
+  .animate-out,
+  [data-open],
+  [data-closed] {
+    animation: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-slot="sheet-overlay"][data-open],
+  [data-slot="sheet-overlay"][data-state="open"] {
+    animation: fade-in 120ms var(--ease-out) !important;
+  }
+  [data-slot="sheet-overlay"][data-closed],
+  [data-slot="sheet-overlay"][data-state="closed"] {
+    animation: fade-out 120ms var(--ease-in) !important;
+  }
+  [data-slot="sheet-content"][data-open],
+  [data-slot="sheet-content"][data-state="open"] {
+    animation: fade-in var(--duration-150) var(--ease-out) !important;
+  }
+  [data-slot="sheet-content"][data-closed],
+  [data-slot="sheet-content"][data-state="closed"] {
+    animation: fade-out 120ms var(--ease-in) !important;
+  }
+  [data-slot="dialog-overlay"][data-open],
+  [data-slot="dialog-overlay"][data-state="open"] {
+    animation: fade-in 120ms var(--ease-out) !important;
+  }
+  [data-slot="dialog-overlay"][data-closed],
+  [data-slot="dialog-overlay"][data-state="closed"] {
+    animation: fade-out 120ms var(--ease-in) !important;
+  }
+  [data-slot="dialog-content"][data-open],
+  [data-slot="dialog-content"][data-state="open"] {
+    animation: fade-in var(--duration-150) var(--ease-out) !important;
+  }
+  [data-slot="dialog-content"][data-closed],
+  [data-slot="dialog-content"][data-state="closed"] {
+    animation: fade-out 120ms var(--ease-in) !important;
+  }
+}

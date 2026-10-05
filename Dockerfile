@@ -1,5 +1,9 @@
 # syntax=docker/dockerfile:1
 
+# The kit lives at vendor/ui inside the repo (see `pnpm sync-ui`), so an
+# isolated build context resolves the file: dependency. Node 24 runs the
+# boot scripts (migrate, seed-if-empty) directly via type stripping.
+
 ARG NODE_VERSION=24-bookworm-slim
 
 FROM node:${NODE_VERSION} AS base
@@ -9,13 +13,15 @@ ENV PNPM_HOME=/pnpm \
 RUN corepack enable
 
 FROM base AS builder
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY vendor/ui/package.json ./vendor/ui/package.json
 RUN pnpm install --frozen-lockfile
 COPY . .
 RUN pnpm build
 
 FROM base AS prod-deps
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY vendor/ui/package.json ./vendor/ui/package.json
 RUN pnpm install --frozen-lockfile --prod
 
 FROM node:${NODE_VERSION} AS runner
@@ -31,12 +37,16 @@ RUN apt-get update && \
 
 COPY --from=prod-deps --chown=app:app /app/node_modules ./node_modules
 COPY --from=prod-deps --chown=app:app /app/package.json ./package.json
+COPY --from=prod-deps --chown=app:app /app/vendor ./vendor
 COPY --from=builder --chown=app:app /app/build ./build
+COPY --from=builder --chown=app:app /app/scripts ./scripts
+COPY --from=builder --chown=app:app /app/src ./src
+COPY --from=builder --chown=app:app /app/migrations ./migrations
 
 USER app
 EXPOSE 3000
 
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+HEALTHCHECK --interval=30s --timeout=3s --start-period=60s --retries=3 \
   CMD curl -f -s -m 2 http://localhost:${PORT}/ || exit 1
 
-CMD ["node_modules/.bin/react-router-serve", "./build/server/index.js"]
+CMD ["sh", "./scripts/start.sh"]

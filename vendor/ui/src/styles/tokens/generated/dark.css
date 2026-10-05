@@ -1,0 +1,39 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --background: #0a0a0a;
+  --card: #111111;
+  --secondary: #1a1a1a;
+  --popover: #111111;
+  --muted: #141414;
+  --text-primary: #fafafa;
+  --text-secondary: #a3a3a3;
+  --tertiary: #a3a3a3;
+  --primary: #ededed;
+  --accent: #1e293b;
+  --destructive: #dc2626;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --text-success: #4ade80;
+  --text-warning: #fcd34d;
+  --success-foreground: #0a0a0a;
+  --warning-foreground: #0a0a0a;
+  --primary-foreground: #0a0a0a;
+  --accent-foreground: #93c5fd;
+  --destructive-foreground: #ffffff;
+  --text-destructive: #fca5a5;
+  --text-accent: #60a5fa;
+  --border-default: #262626;
+  --focus-ring: #3b82f6;
+  --chart-1: #3b82f6;
+  --chart-2: #ededed;
+  --chart-3: #737373;
+  --chart-4: #93c5fd;
+  --chart-5: #3f3f46;
+  --chart-positive: #22c55e;
+  --chart-negative: #ef4444;
+  --chart-neutral: #a3a3a3;
+  --overlay-scrim: #000000;
+}

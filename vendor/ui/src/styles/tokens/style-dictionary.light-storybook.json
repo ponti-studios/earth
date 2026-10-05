@@ -1,0 +1,16 @@
+{
+  "source": ["src/styles/tokens/source/light.tokens.json"],
+  "platforms": {
+    "css": {
+      "transformGroup": "css",
+      "buildPath": ".storybook/generated/",
+      "files": [
+        {
+          "destination": "light-theme-class.css",
+          "format": "css/variables",
+          "options": { "selector": ":root.storybook-theme-light" }
+        }
+      ]
+    }
+  }
+}
