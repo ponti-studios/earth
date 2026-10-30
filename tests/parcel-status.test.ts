@@ -228,4 +228,22 @@ describe("api/parcel-status route", () => {
     });
     expect(response.status).toBe(400);
   });
+
+  it("does not cache live status responses", async () => {
+    const impl = vi.fn(
+      async () =>
+        new Response(JSON.stringify(DHL_PAYLOAD), {
+          status: 200,
+          headers: { "content-type": "application/json" },
+        }),
+    );
+    vi.stubGlobal("fetch", impl);
+
+    const response = await parcelStatusLoader({
+      request: new Request("http://earth.test/api/parcel-status?number=1291215726&carrier=dhl"),
+    });
+
+    expect(response.status).toBe(200);
+    expect(response.headers.get("cache-control")).toBe("no-store");
+  });
 });

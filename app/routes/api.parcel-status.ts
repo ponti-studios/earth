@@ -32,7 +32,9 @@ export async function loader({ request }: { request: Request }) {
   try {
     // Unknown formats come back as `unavailable`/`unknown-carrier` without a
     // fetch; the route never guesses a carrier.
-    return Response.json(await fetchParcelStatus(parsed.data.number));
+    return Response.json(await fetchParcelStatus(parsed.data.number), {
+      headers: { "cache-control": "no-store" },
+    });
   } catch (error) {
     console.error("Parcel status failed:", error);
     return Response.json({ error: "Parcel status failed" }, { status: 502 });
