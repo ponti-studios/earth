@@ -535,11 +535,11 @@ function SavedList({
                   value={parcel.type}
                   onChange={(event) => onTypeChange(parcel.id, event.target.value as ParcelType)}
                   aria-label={`Marker type for ${parcel.number}`}
-                  className="bg-background border-border text-muted-foreground focus:border-ring max-w-24 rounded-md border px-1.5 py-1 text-[11px] focus:outline-none"
+                  className="bg-background border-border text-muted-foreground focus:border-ring max-w-32 rounded-md border px-1.5 py-1 text-[11px] focus:outline-none"
                 >
                   {PARCEL_TYPES.map((type) => (
                     <option key={type.id} value={type.id}>
-                      {TYPE_EMOJI[type.id]}
+                      {TYPE_EMOJI[type.id]} {type.label}
                     </option>
                   ))}
                 </select>
