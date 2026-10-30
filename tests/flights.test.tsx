@@ -107,6 +107,19 @@ test("visibleLegs filters by year and keeps every leg for the full set", () => {
   assert.ok(only2019.every((leg) => leg.year === 2019));
 });
 
+test("selecting a leg renders its detail", () => {
+  const html = renderAt("/flights?leg=T-003");
+  assert.match(html, /aria-label="Selected leg"/);
+  assert.match(html, /Australia — Mar 2024/);
+  assert.match(html, /data-leg-id="T-003"/);
+});
+
+test("a leg hidden by the year filter does not render its detail", () => {
+  const html = renderAt("/flights?years=2019&leg=T-003");
+  assert.doesNotMatch(html, /aria-label="Selected leg"/);
+  assert.equal(renderedLegIds(html).includes("T-003"), false);
+});
+
 test("trailing-slash flight URLs normalise to the standalone route", () => {
   assert.equal(normalisePathname("/flights"), "/flights");
   assert.equal(normalisePathname("/flights/"), "/flights");
