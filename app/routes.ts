@@ -6,11 +6,13 @@ export default [
   route("tfl/:cameraId", "routes/tfl.$cameraId.tsx"),
   route("places", "routes/places.tsx"),
   route("places/:id", "routes/places.$id.tsx"),
+  route("parcels", "routes/parcels.tsx"),
   route("api/tfl", "routes/api.tfl.ts"),
   route("api/stations", "routes/api.stations.ts"),
   route("api/arrivals", "routes/api.arrivals.ts"),
   route("api/line-status", "routes/api.line-status.ts"),
   route("api/geocode", "routes/api.geocode.ts"),
+  route("api/parcel-status", "routes/api.parcel-status.ts"),
   route("api/places", "routes/api.places.ts"),
   route("api/places/:id", "routes/api.places.$id.ts"),
 ] satisfies RouteConfig;

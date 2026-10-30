@@ -116,6 +116,7 @@ export default function App({ loaderData }: Route.ComponentProps) {
   const navigation = useNavigation();
   const isNavigating = navigation.state === "loading";
   const [sheetOpen, setSheetOpen] = useState(false);
+  const standalone = location.pathname === "/parcels" || location.pathname.startsWith("/parcels/");
 
   // Reopen the sheet whenever the selection or route changes (but keep the
   // collapsed stub on first load so the map owns the screen).
@@ -127,6 +128,14 @@ export default function App({ loaderData }: Route.ComponentProps) {
     }
     setSheetOpen(true);
   }, [location.key]);
+
+  if (standalone) {
+    return (
+      <QueryProvider>
+        <Outlet />
+      </QueryProvider>
+    );
+  }
 
   return (
     <QueryProvider>
