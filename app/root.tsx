@@ -23,6 +23,7 @@ import SheetSkeleton from "./components/SheetSkeleton";
 import { BottomSheet } from "@ponti-studios/ui/overlays";
 import { parseLayers, serializeLayers } from "./lib/layers";
 import { getPlace, getPlaceAttempts } from "./lib/server/places";
+import { normalisePathname } from "./lib/paths";
 import { getTflCamera, getTflStation, nearbyTflPoints } from "./lib/server/tfl";
 import type { Route } from "./+types/root";
 
@@ -126,8 +127,7 @@ export default function App({ loaderData }: Route.ComponentProps) {
   // The travel map is its own full-screen surface: it owns the map canvas and
   // side panel, so it opts out of the TfL map + detail-sheet chrome. Normalise
   // the trailing slash so `/flights/` gets the same standalone layout.
-  const pathname = location.pathname.replace(/\/+$/, "") || "/";
-  if (pathname === "/flights") {
+  if (normalisePathname(location.pathname) === "/flights") {
     return (
       <QueryProvider>
         <Outlet />

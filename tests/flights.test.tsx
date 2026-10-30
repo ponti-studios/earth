@@ -10,6 +10,7 @@ import {
   visibleLegs,
   type Airport,
 } from "../app/lib/flights";
+import { normalisePathname } from "../app/lib/paths";
 import Flights from "../app/routes/flights";
 
 const raw = JSON.parse(readFileSync(new URL("../app/data/flights.json", import.meta.url), "utf8"));
@@ -104,6 +105,13 @@ test("visibleLegs filters by year and keeps every leg for the full set", () => {
   const only2019 = visibleLegs(legs, [2019]);
   assert.ok(only2019.length > 0);
   assert.ok(only2019.every((leg) => leg.year === 2019));
+});
+
+test("trailing-slash flight URLs normalise to the standalone route", () => {
+  assert.equal(normalisePathname("/flights"), "/flights");
+  assert.equal(normalisePathname("/flights/"), "/flights");
+  assert.equal(normalisePathname("/flights///"), "/flights");
+  assert.equal(normalisePathname("/"), "/");
 });
 
 test("great-circle paths cross the antimeridian without jumping", () => {
