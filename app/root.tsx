@@ -124,8 +124,10 @@ export default function App({ loaderData }: Route.ComponentProps) {
   }, [location.key]);
 
   // The travel map is its own full-screen surface: it owns the map canvas and
-  // side panel, so it opts out of the TfL map + detail-sheet chrome.
-  if (location.pathname === "/flights") {
+  // side panel, so it opts out of the TfL map + detail-sheet chrome. Normalise
+  // the trailing slash so `/flights/` gets the same standalone layout.
+  const pathname = location.pathname.replace(/\/+$/, "") || "/";
+  if (pathname === "/flights") {
     return (
       <QueryProvider>
         <Outlet />
