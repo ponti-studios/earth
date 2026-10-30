@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import {
   fetchParcelStatus,
   latestDateIso,
@@ -6,6 +6,10 @@ import {
   parseJsonLd,
 } from "../app/lib/server/parcel-status";
 import { loader as parcelStatusLoader } from "../app/routes/api.parcel-status";
+
+afterEach(() => {
+  vi.unstubAllGlobals();
+});
 
 function mockFetch(handler: (url: string) => Response | Promise<Response>) {
   const calls: string[] = [];
@@ -216,7 +220,6 @@ describe("api/parcel-status route", () => {
     expect(body.state).toBe("unavailable");
     expect(body.reason).toBe("unknown-carrier");
     expect(impl).not.toHaveBeenCalled();
-    vi.unstubAllGlobals();
   });
 
   it("rejects a missing number", async () => {
