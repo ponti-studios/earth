@@ -52,12 +52,10 @@ function formatDateTime(value: string | null): string {
 function buildMapRoute(parcel: SavedParcel, status: ParcelStatusResult): ParcelMapRoute | null {
   if (status.state !== "ok") return null;
 
-  const scans = status.events
-    .map((event) => cityCoord(event.place))
-    .filter((coord): coord is NonNullable<typeof coord> => coord !== null);
-  // Events arrive newest first, so the last known scan is the origin end.
-  const origin = cityCoord(status.origin) ?? scans[scans.length - 1] ?? null;
-  const destination = cityCoord(status.destination) ?? scans[0] ?? null;
+  // Both endpoints must resolve to real coordinates. Never substitute a scan
+  // for an unmapped destination: that would label one place as another.
+  const origin = cityCoord(status.origin);
+  const destination = cityCoord(status.destination);
   if (!origin || !destination) return null;
 
   const coords = greatCircle(origin, destination);

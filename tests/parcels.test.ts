@@ -8,6 +8,7 @@ import {
   detectCarrier,
   emojiForType,
   greatCircle,
+  isDelivered,
   loadParcels,
   markerPosition,
   normaliseTrackingNumber,
@@ -264,6 +265,23 @@ describe("marker interpolation", () => {
     const position = markerPosition(route, [], { delivered: true });
     expect(position![0]).toBeCloseTo(LHR.lon, 4);
     expect(position![1]).toBeCloseTo(LHR.lat, 4);
+  });
+});
+
+describe("delivery status", () => {
+  it("accepts affirmative delivered statuses", () => {
+    expect(isDelivered("Delivered")).toBe(true);
+    expect(isDelivered("Delivered to your neighbour")).toBe(true);
+    expect(isDelivered("Shipment delivered")).toBe(true);
+    expect(isDelivered("Delivery completed")).toBe(true);
+  });
+
+  it("rejects mentions of delivery that are not completed", () => {
+    expect(isDelivered("Not delivered")).toBe(false);
+    expect(isDelivered("Shipment will be delivered tomorrow")).toBe(false);
+    expect(isDelivered("Out for delivery")).toBe(false);
+    expect(isDelivered("Attempted delivery")).toBe(false);
+    expect(isDelivered(null)).toBe(false);
   });
 });
 

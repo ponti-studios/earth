@@ -59,6 +59,11 @@ const DHL_OK: ParcelStatusResult = {
   fetchedAt: "2026-10-30T12:00:00.000Z",
 };
 
+const DHL_UNMAPPED_DESTINATION: ParcelStatusResult = {
+  ...DHL_OK,
+  destination: "NEW YORK - USA",
+};
+
 function stubFetch(result: ParcelStatusResult = UNAVAILABLE) {
   const impl = vi.fn(async () => new Response(JSON.stringify(result), { status: 200 }));
   vi.stubGlobal("fetch", impl);
@@ -150,6 +155,20 @@ describe("/parcels route", () => {
     // Named-city scan wins: the marker jumps to East Midlands.
     expect(route!.marker).toEqual([-1.3281, 52.8311]);
     expect(mapState.props?.emoji).toBe("🚚");
+  });
+
+  it("omits the route when a destination cannot be resolved to coordinates", async () => {
+    stubFetch(DHL_UNMAPPED_DESTINATION);
+    render(<Parcels />);
+
+    addNumber("1291215726", "moving");
+
+    await waitFor(() => {
+      expect(screen.getByText(/NEW YORK - USA/)).toBeTruthy();
+    });
+    await waitFor(() => {
+      expect(mapState.props?.route).toBeNull();
+    });
   });
 
   it("lets each saved item's type drive its marker", async () => {

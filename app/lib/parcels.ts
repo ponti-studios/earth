@@ -367,8 +367,18 @@ export function routeFraction(options: {
   return 0.05 + ((now - start) / (end - start)) * (0.97 - 0.05);
 }
 
+const DELIVERED_STATUS_PATTERNS = [
+  /^\s*delivered\b/i,
+  /^\s*completed\b/i,
+  /\b(delivery|shipment|parcel|package|item)\s+(?:has\s+been\s+|was\s+)?(?:successfully\s+)?delivered\b/i,
+  /\bdelivery\s+completed?\b/i,
+];
+
+// Match an affirmative completed delivery only. "Not delivered" and "will be
+// delivered tomorrow" are not deliveries.
 export function isDelivered(status: string | null | undefined): boolean {
-  return typeof status === "string" && /delivered/i.test(status);
+  if (!status) return false;
+  return DELIVERED_STATUS_PATTERNS.some((pattern) => pattern.test(status));
 }
 
 // A named-city scan wins over the clock — the marker jumps to the scan.
