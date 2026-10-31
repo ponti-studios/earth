@@ -9,8 +9,10 @@ import {
   useLocation,
   useNavigation,
 } from "react-router";
+import "maplibre-gl/dist/maplibre-gl.css";
 import "./app.css";
 import CameraDetail from "./components/CameraDetail";
+import ClientOnly from "./components/ClientOnly";
 import LayerToggle from "./components/LayerToggle";
 import MapLibreViewer from "./components/MapLibreViewer";
 import PlaceDetail from "./components/PlaceDetail";
@@ -21,15 +23,9 @@ import SheetSkeleton from "./components/SheetSkeleton";
 import { BottomSheet } from "@ponti-studios/ui/overlays";
 import { parseLayers, serializeLayers } from "./lib/layers";
 import { getPlace, getPlaceAttempts } from "./lib/server/places";
+import { normalisePathname } from "./lib/paths";
 import { getTflCamera, getTflStation, nearbyTflPoints } from "./lib/server/tfl";
 import type { Route } from "./+types/root";
-
-function ClientOnly({ children }: { children: React.ReactNode }) {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-  if (!mounted) return null;
-  return <>{children}</>;
-}
 
 export const links = () => [
   { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
@@ -127,6 +123,17 @@ export default function App({ loaderData }: Route.ComponentProps) {
     }
     setSheetOpen(true);
   }, [location.key]);
+
+  // The travel map is its own full-screen surface: it owns the map canvas and
+  // side panel, so it opts out of the TfL map + detail-sheet chrome. Normalise
+  // the trailing slash so `/flights/` gets the same standalone layout.
+  if (normalisePathname(location.pathname) === "/flights") {
+    return (
+      <QueryProvider>
+        <Outlet />
+      </QueryProvider>
+    );
+  }
 
   return (
     <QueryProvider>

@@ -1,0 +1,1036 @@
+{
+  "airports": {
+    "LAX": {
+      "lat": 33.94374,
+      "lon": -118.4085,
+      "name": "Los Angeles International Airport",
+      "city": "Los Angeles",
+      "country": "USA"
+    },
+    "BUR": {
+      "lat": 34.1957,
+      "lon": -118.34892,
+      "name": "Hollywood Burbank Airport",
+      "city": "Burbank",
+      "country": "USA"
+    },
+    "CVG": {
+      "lat": 39.05699,
+      "lon": -84.65962,
+      "name": "Cincinnati/Northern Kentucky International Airport",
+      "city": "Cincinnati",
+      "country": "USA"
+    },
+    "SYD": {
+      "lat": -33.93762,
+      "lon": 151.16543,
+      "name": "Sydney Kingsford Smith Airport",
+      "city": "Sydney",
+      "country": "Australia"
+    },
+    "MEL": {
+      "lat": -37.67007,
+      "lon": 144.84938,
+      "name": "Melbourne Airport",
+      "city": "Melbourne",
+      "country": "Australia"
+    },
+    "BNK": {
+      "lat": -28.83695,
+      "lon": 153.5536,
+      "name": "Ballina Byron Gateway Airport",
+      "city": "Ballina",
+      "country": "Australia"
+    },
+    "DEN": {
+      "lat": 39.83923,
+      "lon": -104.67181,
+      "name": "Denver International Airport",
+      "city": "Denver",
+      "country": "USA"
+    },
+    "DFW": {
+      "lat": 32.89,
+      "lon": -97.0341,
+      "name": "Dallas Fort Worth International Airport",
+      "city": "Dallas",
+      "country": "USA"
+    },
+    "LIS": {
+      "lat": 38.77012,
+      "lon": -9.12868,
+      "name": "Humberto Delgado Airport",
+      "city": "Lisbon",
+      "country": "Portugal"
+    },
+    "MAD": {
+      "lat": 40.46151,
+      "lon": -3.57626,
+      "name": "Adolfo Suárez Madrid-Barajas Airport",
+      "city": "Madrid",
+      "country": "Spain"
+    },
+    "BIO": {
+      "lat": 43.30497,
+      "lon": -2.9062,
+      "name": "Bilbao Airport",
+      "city": "Bilbao",
+      "country": "Spain"
+    },
+    "OPO": {
+      "lat": 41.23649,
+      "lon": -8.67075,
+      "name": "Francisco Sá Carneiro Airport",
+      "city": "Porto",
+      "country": "Portugal"
+    },
+    "JFK": {
+      "lat": 40.64462,
+      "lon": -73.79425,
+      "name": "John F. Kennedy International Airport",
+      "city": "New York",
+      "country": "USA"
+    },
+    "SLC": {
+      "lat": 40.78068,
+      "lon": -111.98084,
+      "name": "Salt Lake City International Airport",
+      "city": "Salt Lake City",
+      "country": "USA"
+    },
+    "YVR": {
+      "lat": 49.19536,
+      "lon": -123.1779,
+      "name": "Vancouver International Airport",
+      "city": "Vancouver",
+      "country": "Canada"
+    },
+    "YYZ": {
+      "lat": 43.68123,
+      "lon": -79.61363,
+      "name": "Toronto Pearson International Airport",
+      "city": "Toronto",
+      "country": "Canada"
+    },
+    "PWM": {
+      "lat": 43.64985,
+      "lon": -70.31426,
+      "name": "Portland International Jetport",
+      "city": "Portland",
+      "country": "USA"
+    },
+    "BOS": {
+      "lat": 42.37181,
+      "lon": -71.02822,
+      "name": "Boston Logan International Airport",
+      "city": "Boston",
+      "country": "USA"
+    },
+    "SJU": {
+      "lat": 18.4394,
+      "lon": -66.0018,
+      "name": "Luis Muñoz Marín International Airport",
+      "city": "San Juan",
+      "country": "Puerto Rico"
+    },
+    "LGW": {
+      "lat": 51.15994,
+      "lon": -0.16411,
+      "name": "London Gatwick Airport",
+      "city": "London",
+      "country": "UK"
+    },
+    "LHR": {
+      "lat": 51.47234,
+      "lon": -0.45284,
+      "name": "London Heathrow Airport",
+      "city": "London",
+      "country": "UK"
+    },
+    "KEF": {
+      "lat": 63.99822,
+      "lon": -22.62748,
+      "name": "Keflavik International Airport",
+      "city": "Reykjavik",
+      "country": "Iceland"
+    },
+    "STN": {
+      "lat": 51.88614,
+      "lon": 0.25946,
+      "name": "London Stansted Airport",
+      "city": "London",
+      "country": "UK"
+    },
+    "CPH": {
+      "lat": 55.62955,
+      "lon": 12.64552,
+      "name": "Copenhagen Kastrup Airport",
+      "city": "Copenhagen",
+      "country": "Denmark"
+    },
+    "PMI": {
+      "lat": 39.54792,
+      "lon": 2.73114,
+      "name": "Palma de Mallorca Airport",
+      "city": "Palma de Mallorca",
+      "country": "Spain"
+    },
+    "MJV": {
+      "lat": 37.7749,
+      "lon": -0.8122,
+      "name": "Murcia–San Javier Airport",
+      "city": "Murcia",
+      "country": "Spain"
+    },
+    "BGY": {
+      "lat": 45.66433,
+      "lon": 9.7017,
+      "name": "Bergamo Orio al Serio Airport",
+      "city": "Bergamo",
+      "country": "Italy"
+    },
+    "SXF": {
+      "lat": 52.38912,
+      "lon": 13.51839,
+      "name": "Berlin Schönefeld Airport",
+      "city": "Berlin",
+      "country": "Germany"
+    },
+    "AGP": {
+      "lat": 36.675,
+      "lon": -4.4991,
+      "name": "Málaga–Costa del Sol Airport",
+      "city": "Málaga",
+      "country": "Spain"
+    },
+    "NYP": {
+      "lat": 40.75033,
+      "lon": -73.99396,
+      "name": "New York Penn Station",
+      "city": "New York",
+      "country": "USA"
+    }
+  },
+  "legs": [
+    {
+      "id": "T-001",
+      "date": "2026-07-16",
+      "mode": "air",
+      "from": "LAX",
+      "to": "CVG",
+      "carrier": "Delta",
+      "number": "DL458",
+      "journey": "JRN-047",
+      "notes": "trip grouping inferred in sheet",
+      "km": 3052,
+      "journey_name": "Cincinnati — 2026-07"
+    },
+    {
+      "id": "T-002",
+      "date": "2026-07-20",
+      "mode": "air",
+      "from": "CVG",
+      "to": "LAX",
+      "carrier": "Delta",
+      "number": "DL393",
+      "journey": "JRN-047",
+      "notes": "trip grouping inferred in sheet",
+      "km": 3052,
+      "journey_name": "Cincinnati — 2026-07"
+    },
+    {
+      "id": "T-003",
+      "date": "2024-03-10",
+      "mode": "air",
+      "from": "LAX",
+      "to": "SYD",
+      "carrier": "Delta",
+      "number": "DL43",
+      "journey": "JRN-042",
+      "notes": "",
+      "km": 12062,
+      "journey_name": "Australia — Mar 2024"
+    },
+    {
+      "id": "T-004",
+      "date": "2024-03-17",
+      "mode": "air",
+      "from": "SYD",
+      "to": "MEL",
+      "carrier": "Virgin Australia",
+      "number": "VA842",
+      "journey": "JRN-042",
+      "notes": "",
+      "km": 704,
+      "journey_name": "Australia — Mar 2024"
+    },
+    {
+      "id": "T-005",
+      "date": "2024-03-22",
+      "mode": "air",
+      "from": "MEL",
+      "to": "BNK",
+      "carrier": "Jetstar Airways",
+      "number": "JQ464",
+      "journey": "JRN-042",
+      "notes": "",
+      "km": 1271,
+      "journey_name": "Australia — Mar 2024"
+    },
+    {
+      "id": "T-006",
+      "date": "2024-03-27",
+      "mode": "air",
+      "from": "BNK",
+      "to": "SYD",
+      "carrier": "Virgin Australia",
+      "number": "VA1140",
+      "journey": "JRN-042",
+      "notes": "",
+      "km": 611,
+      "journey_name": "Australia — Mar 2024"
+    },
+    {
+      "id": "T-007",
+      "date": "2024-03-28",
+      "mode": "air",
+      "from": "SYD",
+      "to": "LAX",
+      "carrier": "Qantas; Delta codeshare",
+      "number": "QF11; DL42",
+      "journey": "JRN-042",
+      "notes": "",
+      "km": 12062,
+      "journey_name": "Australia — Mar 2024"
+    },
+    {
+      "id": "T-008",
+      "date": "2023-08-13",
+      "mode": "air",
+      "from": "BUR",
+      "to": "DEN",
+      "carrier": "United Airlines",
+      "number": "UA581",
+      "journey": "JRN-037",
+      "notes": "",
+      "km": 1365,
+      "journey_name": "Denver — 2023-08"
+    },
+    {
+      "id": "T-009",
+      "date": "2023-08-16",
+      "mode": "air",
+      "from": "DEN",
+      "to": "BUR",
+      "carrier": "United Airlines",
+      "number": "UA464",
+      "journey": "JRN-037",
+      "notes": "",
+      "km": 1365,
+      "journey_name": "Denver — 2023-08"
+    },
+    {
+      "id": "T-010",
+      "date": "2023-01-06",
+      "mode": "air",
+      "from": "DFW",
+      "to": "LAX",
+      "carrier": "American Airlines",
+      "number": "AA2733",
+      "journey": "JRN-034",
+      "notes": "",
+      "km": 1984,
+      "journey_name": "Dallas — 2023-01"
+    },
+    {
+      "id": "T-011",
+      "date": "2023-01-06",
+      "mode": "air",
+      "from": "LIS",
+      "to": "MAD",
+      "carrier": "Iberia",
+      "number": "IB3111",
+      "journey": "JRN-033",
+      "notes": "",
+      "km": 511,
+      "journey_name": "Spain & Portugal — Dec 2022–Jan 2023"
+    },
+    {
+      "id": "T-012",
+      "date": "2023-01-06",
+      "mode": "air",
+      "from": "MAD",
+      "to": "LAX",
+      "carrier": "Iberia",
+      "number": "IB6171",
+      "journey": "JRN-033",
+      "notes": "layover or positioning — no stop",
+      "km": 9387,
+      "journey_name": "Spain & Portugal — Dec 2022–Jan 2023"
+    },
+    {
+      "id": "T-013",
+      "date": "2022-12-16",
+      "mode": "air",
+      "from": "LAX",
+      "to": "MAD",
+      "carrier": "Iberia",
+      "number": "IB6170",
+      "journey": "JRN-033",
+      "notes": "",
+      "km": 9387,
+      "journey_name": "Spain & Portugal — Dec 2022–Jan 2023"
+    },
+    {
+      "id": "T-014",
+      "date": "2022-12-26",
+      "mode": "air",
+      "from": "BIO",
+      "to": "OPO",
+      "carrier": "Volotea",
+      "number": "V73574",
+      "journey": "JRN-033",
+      "notes": "",
+      "km": 527,
+      "journey_name": "Spain & Portugal — Dec 2022–Jan 2023"
+    },
+    {
+      "id": "T-015",
+      "date": "2022-06-23",
+      "mode": "air",
+      "from": "LAX",
+      "to": "DFW",
+      "carrier": "American Airlines",
+      "number": "AA2459",
+      "journey": "JRN-032",
+      "notes": "layover or positioning — no stop",
+      "km": 1984,
+      "journey_name": "Rockwall — 2022-06"
+    },
+    {
+      "id": "T-016",
+      "date": "2022-06-25",
+      "mode": "air",
+      "from": "DFW",
+      "to": "BUR",
+      "carrier": "American Airlines",
+      "number": "AA2597",
+      "journey": "JRN-032",
+      "notes": "layover or positioning — no stop",
+      "km": 1977,
+      "journey_name": "Rockwall — 2022-06"
+    },
+    {
+      "id": "T-017",
+      "date": "2020-02-11",
+      "mode": "air",
+      "from": "JFK",
+      "to": "LHR",
+      "carrier": "Delta",
+      "number": "DL1",
+      "journey": "JRN-024",
+      "notes": "",
+      "km": 5541,
+      "journey_name": "London — 2020-02"
+    },
+    {
+      "id": "T-018",
+      "date": "2020-10-25",
+      "mode": "air",
+      "from": "SLC",
+      "to": "JFK",
+      "carrier": "Delta",
+      "number": "DL772",
+      "journey": "JRN-026",
+      "notes": "trip grouping inferred in sheet",
+      "km": 3193,
+      "journey_name": "New York — 2020-10"
+    },
+    {
+      "id": "T-019",
+      "date": "2019-11-30",
+      "mode": "air",
+      "from": "YVR",
+      "to": "YYZ",
+      "carrier": "WestJet, marketed by Delta",
+      "number": "DL7108 / DL7138",
+      "journey": "JRN-023",
+      "notes": "trip grouping inferred in sheet",
+      "km": 3346,
+      "journey_name": "Toronto — 2019-11"
+    },
+    {
+      "id": "T-020",
+      "date": "2019-11-21",
+      "mode": "air",
+      "from": "JFK",
+      "to": "PWM",
+      "carrier": "Delta",
+      "number": "DL537",
+      "journey": "JRN-022",
+      "notes": "trip grouping inferred in sheet",
+      "km": 440,
+      "journey_name": "Portland — 2019-11"
+    },
+    {
+      "id": "T-021",
+      "date": "2019-01-03",
+      "mode": "air",
+      "from": "BOS",
+      "to": "SJU",
+      "carrier": "JetBlue",
+      "number": "B6861",
+      "journey": "JRN-016",
+      "notes": "",
+      "km": 2703,
+      "journey_name": "San Juan — 2019-01"
+    },
+    {
+      "id": "T-022",
+      "date": "2019-01-07",
+      "mode": "air",
+      "from": "SJU",
+      "to": "BOS",
+      "carrier": "JetBlue",
+      "number": "B6862",
+      "journey": "JRN-016",
+      "notes": "",
+      "km": 2703,
+      "journey_name": "San Juan — 2019-01"
+    },
+    {
+      "id": "T-023",
+      "date": "2018-11-19",
+      "mode": "air",
+      "from": "LGW",
+      "to": "JFK",
+      "carrier": "Norwegian Air UK",
+      "number": "DI7015",
+      "journey": "JRN-014",
+      "notes": "",
+      "km": 5571,
+      "journey_name": "New York — 2018-11"
+    },
+    {
+      "id": "T-024",
+      "date": "2018-11-26",
+      "mode": "air",
+      "from": "JFK",
+      "to": "LGW",
+      "carrier": "Norwegian Air UK",
+      "number": "DI7016",
+      "journey": "JRN-014",
+      "notes": "",
+      "km": 5571,
+      "journey_name": "New York — 2018-11"
+    },
+    {
+      "id": "T-025",
+      "date": "2018-09-17",
+      "mode": "air",
+      "from": "LHR",
+      "to": "BOS",
+      "carrier": "British Airways",
+      "number": "BA213",
+      "journey": "JRN-013",
+      "notes": "",
+      "km": 5241,
+      "journey_name": "Boston — 2018-09"
+    },
+    {
+      "id": "T-026",
+      "date": "2018-02-28",
+      "mode": "air",
+      "from": "LGW",
+      "to": "KEF",
+      "carrier": "Icelandair",
+      "number": "FI471",
+      "journey": "JRN-009",
+      "notes": "positioning leg into journey — no stop on either end",
+      "km": 1937,
+      "journey_name": "New York — 2018-02"
+    },
+    {
+      "id": "T-027",
+      "date": "2018-02-28",
+      "mode": "air",
+      "from": "KEF",
+      "to": "JFK",
+      "carrier": "Icelandair",
+      "number": "FI615",
+      "journey": "JRN-009",
+      "notes": "",
+      "km": 4163,
+      "journey_name": "New York — 2018-02"
+    },
+    {
+      "id": "T-028",
+      "date": "2017-12-28",
+      "mode": "air",
+      "from": "AGP",
+      "to": "LGW",
+      "carrier": "easyJet",
+      "number": "U28602",
+      "journey": "JRN-008",
+      "notes": "",
+      "km": 1647,
+      "journey_name": "Málaga — 2017-12"
+    },
+    {
+      "id": "T-029",
+      "date": "2017-11-16",
+      "mode": "air",
+      "from": "STN",
+      "to": "CPH",
+      "carrier": "Ryanair",
+      "number": "FR7384",
+      "journey": "JRN-007",
+      "notes": "",
+      "km": 913,
+      "journey_name": "Copenhagen — 2017-11"
+    },
+    {
+      "id": "T-030",
+      "date": "2017-11-19",
+      "mode": "air",
+      "from": "CPH",
+      "to": "LGW",
+      "carrier": "Norwegian Air",
+      "number": "D82913",
+      "journey": "JRN-007",
+      "notes": "",
+      "km": 982,
+      "journey_name": "Copenhagen — 2017-11"
+    },
+    {
+      "id": "T-031",
+      "date": "2017-09-13",
+      "mode": "air",
+      "from": "PMI",
+      "to": "STN",
+      "carrier": "Ryanair",
+      "number": "FR8387",
+      "journey": "JRN-005",
+      "notes": "layover or positioning — no stop",
+      "km": 1385,
+      "journey_name": "Valldemossa — 2017-09"
+    },
+    {
+      "id": "T-032",
+      "date": "2017-05-25",
+      "mode": "air",
+      "from": "STN",
+      "to": "MJV",
+      "carrier": "Ryanair",
+      "number": "FR8028",
+      "journey": "JRN-004",
+      "notes": "",
+      "km": 1571,
+      "journey_name": "Murcia — 2017-05"
+    },
+    {
+      "id": "T-033",
+      "date": "2017-03-08",
+      "mode": "air",
+      "from": "STN",
+      "to": "BGY",
+      "carrier": "Ryanair",
+      "number": "FR4192",
+      "journey": "JRN-003",
+      "notes": "",
+      "km": 977,
+      "journey_name": "Bergamo — 2017-03"
+    },
+    {
+      "id": "T-034",
+      "date": "2017-03-13",
+      "mode": "air",
+      "from": "BGY",
+      "to": "STN",
+      "carrier": "Ryanair",
+      "number": "FR4197",
+      "journey": "JRN-003",
+      "notes": "",
+      "km": 977,
+      "journey_name": "Bergamo — 2017-03"
+    },
+    {
+      "id": "T-035",
+      "date": "2016-08-26",
+      "mode": "air",
+      "from": "LGW",
+      "to": "SXF",
+      "carrier": "easyJet",
+      "number": "U25407",
+      "journey": "JRN-002",
+      "notes": "",
+      "km": 950,
+      "journey_name": "Berlin — 2016-08"
+    },
+    {
+      "id": "T-036",
+      "date": "2016-08-29",
+      "mode": "air",
+      "from": "SXF",
+      "to": "LGW",
+      "carrier": "easyJet",
+      "number": "U25408",
+      "journey": "JRN-002",
+      "notes": "",
+      "km": 950,
+      "journey_name": "Berlin — 2016-08"
+    },
+    {
+      "id": "T-037",
+      "date": "2019-01-26",
+      "mode": "rail",
+      "from": "BOS",
+      "to": "NYP",
+      "carrier": "Amtrak",
+      "number": "Train 99",
+      "journey": "JRN-017",
+      "notes": "Boston South → New York Penn",
+      "km": 306,
+      "journey_name": "New York — 2019-01"
+    },
+    {
+      "id": "T-038",
+      "date": "2019-07-15",
+      "mode": "rail",
+      "from": "BOS",
+      "to": "NYP",
+      "carrier": "Acela",
+      "number": "2153",
+      "journey": "JRN-020",
+      "notes": "Boston South → New York Penn, $250",
+      "km": 306,
+      "journey_name": "New York — Jul 2019"
+    },
+    {
+      "id": "T-039",
+      "date": "2019-07-21",
+      "mode": "rail",
+      "from": "NYP",
+      "to": "BOS",
+      "carrier": "Acela",
+      "number": "2256",
+      "journey": "JRN-020",
+      "notes": "New York Penn → Boston South",
+      "km": 306,
+      "journey_name": "New York — Jul 2019"
+    },
+    {
+      "id": "T-040",
+      "date": "2026-11-25",
+      "mode": "air",
+      "from": "LHR",
+      "to": "CVG",
+      "carrier": "British Airways",
+      "number": "BA121",
+      "journey": "JRN-048",
+      "notes": "",
+      "km": 6360,
+      "journey_name": "Cincinnati — 2026-11"
+    },
+    {
+      "id": "T-041",
+      "date": "2026-11-29",
+      "mode": "air",
+      "from": "CVG",
+      "to": "LHR",
+      "carrier": "British Airways",
+      "number": "BA120",
+      "journey": "JRN-048",
+      "notes": "",
+      "km": 6360,
+      "journey_name": "Cincinnati — 2026-11"
+    }
+  ],
+  "journeys": {
+    "JRN-001": {
+      "name": "Boston — 2019-10",
+      "start": "",
+      "end": "2019-10-18"
+    },
+    "JRN-002": {
+      "name": "Berlin — 2016-08",
+      "start": "2016-08-26",
+      "end": "2016-08-29"
+    },
+    "JRN-003": {
+      "name": "Bergamo — 2017-03",
+      "start": "2017-03-08",
+      "end": "2017-03-13"
+    },
+    "JRN-004": {
+      "name": "Murcia — 2017-05",
+      "start": "2017-05-25",
+      "end": "2017-05-25"
+    },
+    "JRN-005": {
+      "name": "Valldemossa — 2017-09",
+      "start": "2017-09-06",
+      "end": "2017-09-13"
+    },
+    "JRN-006": {
+      "name": "Bridport — 2017-09",
+      "start": "2017-09-21",
+      "end": "2017-09-21"
+    },
+    "JRN-007": {
+      "name": "Copenhagen — 2017-11",
+      "start": "2017-11-16",
+      "end": "2017-11-19"
+    },
+    "JRN-008": {
+      "name": "Málaga — 2017-12",
+      "start": "2017-12-28",
+      "end": "2017-12-28"
+    },
+    "JRN-009": {
+      "name": "New York — 2018-02",
+      "start": "2018-02-27",
+      "end": "2018-03-02"
+    },
+    "JRN-010": {
+      "name": "Los Angeles — 2018-03",
+      "start": "2018-03-06",
+      "end": "2018-03-06"
+    },
+    "JRN-011": {
+      "name": "San Francisco — 2018-03",
+      "start": "2018-03-06",
+      "end": "2018-03-06"
+    },
+    "JRN-012": {
+      "name": "New York — 2018-07",
+      "start": "2018-07-30",
+      "end": "2018-07-30"
+    },
+    "JRN-013": {
+      "name": "Boston — 2018-09",
+      "start": "2018-09-17",
+      "end": "2018-09-23"
+    },
+    "JRN-014": {
+      "name": "New York — 2018-11",
+      "start": "2018-11-19",
+      "end": "2018-11-26"
+    },
+    "JRN-015": {
+      "name": "New York — 2018-11",
+      "start": "2018-11-20",
+      "end": "2018-11-24"
+    },
+    "JRN-016": {
+      "name": "San Juan — 2019-01",
+      "start": "2019-01-03",
+      "end": "2019-01-07"
+    },
+    "JRN-017": {
+      "name": "New York — 2019-01",
+      "start": "2019-01-26",
+      "end": "2019-01-26"
+    },
+    "JRN-018": {
+      "name": "New York — 2019-03",
+      "start": "2019-03-02",
+      "end": "2019-03-02"
+    },
+    "JRN-019": {
+      "name": "London & Brighton — Apr 2019",
+      "start": "2019-04-24",
+      "end": "2019-04-26"
+    },
+    "JRN-020": {
+      "name": "New York — Jul 2019",
+      "start": "2019-07-15",
+      "end": "2019-07-20"
+    },
+    "JRN-021": {
+      "name": "Washington — 2019-08",
+      "start": "2019-08-03",
+      "end": "2019-08-03"
+    },
+    "JRN-022": {
+      "name": "Portland — 2019-11",
+      "start": "2019-11-21",
+      "end": "2019-11-21"
+    },
+    "JRN-023": {
+      "name": "Toronto — 2019-11",
+      "start": "2019-11-30",
+      "end": "2019-11-30"
+    },
+    "JRN-024": {
+      "name": "London — 2020-02",
+      "start": "2020-02-11",
+      "end": "2020-02-11"
+    },
+    "JRN-025": {
+      "name": "Portland — 2020-08",
+      "start": "2020-08-01",
+      "end": "2020-08-01"
+    },
+    "JRN-026": {
+      "name": "New York — 2020-10",
+      "start": "2020-10-25",
+      "end": "2020-10-25"
+    },
+    "JRN-027": {
+      "name": "Austin — 2021-03",
+      "start": "2021-03-08",
+      "end": "2021-03-08"
+    },
+    "JRN-028": {
+      "name": "Santa Fe — 2021-03",
+      "start": "2021-03-28",
+      "end": "2021-03-28"
+    },
+    "JRN-029": {
+      "name": "Los Angeles — Apr/May 2021",
+      "start": "2021-04-06",
+      "end": "2021-04-17"
+    },
+    "JRN-030": {
+      "name": "Santa Cruz — 2021-09",
+      "start": "2021-09-12",
+      "end": "2021-09-12"
+    },
+    "JRN-031": {
+      "name": "San Diego — 2022-02",
+      "start": "2022-02-05",
+      "end": "2022-02-05"
+    },
+    "JRN-032": {
+      "name": "Rockwall — 2022-06",
+      "start": "2022-06-23",
+      "end": "2022-06-25"
+    },
+    "JRN-033": {
+      "name": "Spain & Portugal — Dec 2022–Jan 2023",
+      "start": "2022-12-16",
+      "end": "2023-01-06"
+    },
+    "JRN-034": {
+      "name": "Dallas — 2023-01",
+      "start": "2023-01-06",
+      "end": "2023-01-06"
+    },
+    "JRN-035": {
+      "name": "Palm Springs — 2023-05",
+      "start": "2023-05-04",
+      "end": "2023-05-06"
+    },
+    "JRN-036": {
+      "name": "Las Vegas — 2023-06",
+      "start": "2023-06-10",
+      "end": "2023-06-11"
+    },
+    "JRN-037": {
+      "name": "Denver — 2023-08",
+      "start": "2023-08-13",
+      "end": "2023-08-16"
+    },
+    "JRN-038": {
+      "name": "London — 2023-10",
+      "start": "2023-10-22",
+      "end": "2023-10-28"
+    },
+    "JRN-039": {
+      "name": "London — 2023-10",
+      "start": "2023-10-28",
+      "end": "2023-11-06"
+    },
+    "JRN-040": {
+      "name": "Rockwall — 2024-01",
+      "start": "2024-01-21",
+      "end": "2024-01-24"
+    },
+    "JRN-041": {
+      "name": "San Jose — 2024-02",
+      "start": "2024-02-09",
+      "end": "2024-02-12"
+    },
+    "JRN-042": {
+      "name": "Australia — Mar 2024",
+      "start": "2024-03-10",
+      "end": "2024-03-28"
+    },
+    "JRN-043": {
+      "name": "Tucson — 2024-12",
+      "start": "2024-12-20",
+      "end": "2024-12-22"
+    },
+    "JRN-044": {
+      "name": "Phoenix — 2024-12",
+      "start": "2024-12-27",
+      "end": "2024-12-28"
+    },
+    "JRN-045": {
+      "name": "Palm Springs — 2025-04",
+      "start": "2025-04-21",
+      "end": "2025-04-22"
+    },
+    "JRN-046": {
+      "name": "Santa Barbara — 2025-10",
+      "start": "2025-10-09",
+      "end": "2025-10-13"
+    },
+    "JRN-047": {
+      "name": "Cincinnati — 2026-07",
+      "start": "2026-07-16",
+      "end": "2026-07-20"
+    },
+    "JRN-048": {
+      "name": "Cincinnati — 2026-11",
+      "start": "2026-11-25",
+      "end": "2026-11-29"
+    },
+    "JRN-049": {
+      "name": "Joshua Tree — 2023-07",
+      "start": "2023-07-03",
+      "end": "2023-07-05"
+    },
+    "JRN-050": {
+      "name": "Carmel — 2023-11",
+      "start": "2023-11-15",
+      "end": "2023-11-18"
+    },
+    "JRN-051": {
+      "name": "San Luis Obispo — 2024-02",
+      "start": "2024-02-01",
+      "end": "2024-02-03"
+    },
+    "JRN-052": {
+      "name": "Joshua Tree — 2024-06",
+      "start": "2024-06-14",
+      "end": "2024-06-16"
+    },
+    "JRN-053": {
+      "name": "Santa Fe — 2024-12",
+      "start": "2024-12-23",
+      "end": "2024-12-27"
+    }
+  },
+  "stats": {
+    "legs": 41,
+    "total_km": 125696,
+    "total_miles": 78104,
+    "airports": 30,
+    "countries": [
+      "Australia",
+      "Canada",
+      "Denmark",
+      "Germany",
+      "Iceland",
+      "Italy",
+      "Portugal",
+      "Puerto Rico",
+      "Spain",
+      "UK",
+      "USA"
+    ],
+    "span": ["2016-08-26", "2026-11-29"]
+  }
+}
