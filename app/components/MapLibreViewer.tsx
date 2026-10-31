@@ -1,17 +1,11 @@
-import "maplibre-gl/dist/maplibre-gl.css";
 import { useCallback, useEffect, useState } from "react";
-import Map, {
-  Layer,
-  NavigationControl,
-  Source,
-  useMap,
-  type MapLayerMouseEvent,
-} from "react-map-gl/maplibre";
+import { Layer, Source, useMap, type MapLayerMouseEvent } from "react-map-gl/maplibre";
 import { useSearchParams } from "react-router";
 import type { TflCamera, TflStation } from "~/lib/server/tfl";
 import { parseLayers, serializeLayers } from "~/lib/layers";
 import { useTflCameras } from "../lib/hooks/use-tfl-cameras";
 import { useTflStations } from "../lib/hooks/use-tfl-stations";
+import MapCanvas from "./MapCanvas";
 
 type PlacePoint = {
   id: number;
@@ -21,8 +15,6 @@ type PlacePoint = {
 };
 
 const LONDON_CENTER = { longitude: -0.1278, latitude: 51.5074, zoom: 12 };
-
-const MAP_STYLE = "https://tiles.openfreemap.org/styles/liberty";
 
 function cameraToGeoJSON(cameras: TflCamera[]): GeoJSON.FeatureCollection<GeoJSON.Point> {
   return {
@@ -168,10 +160,9 @@ export default function MapLibreViewer() {
 
   return (
     <div className="absolute inset-0 overflow-hidden touch-none">
-      <Map
+      <MapCanvas
         initialViewState={LONDON_CENTER}
         style={{ width: "100%", height: "100%" }}
-        mapStyle={MAP_STYLE}
         interactiveLayerIds={[
           ...(geojson ? ["cameras"] : []),
           ...(placesGeojson ? ["places"] : []),
@@ -180,7 +171,6 @@ export default function MapLibreViewer() {
         onClick={onClick}
         cursor="auto"
       >
-        <NavigationControl position="bottom-right" />
         <CameraIcons />
 
         {geojson && (
@@ -247,7 +237,7 @@ export default function MapLibreViewer() {
             />
           </Source>
         )}
-      </Map>
+      </MapCanvas>
     </div>
   );
 }

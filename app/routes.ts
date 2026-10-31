@@ -6,6 +6,7 @@ export default [
   route("tfl/:cameraId", "routes/tfl.$cameraId.tsx"),
   route("places", "routes/places.tsx"),
   route("places/:id", "routes/places.$id.tsx"),
+  route("flights", "routes/flights.tsx"),
   route("parcels", "routes/parcels.tsx"),
   route("api/tfl", "routes/api.tfl.ts"),
   route("api/stations", "routes/api.stations.ts"),
