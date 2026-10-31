@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import test from "node:test";
+import { resolve } from "node:path";
+import { test } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
 import { createRoutesStub } from "react-router";
 import {
@@ -13,7 +14,7 @@ import {
 import { normalisePathname } from "../app/lib/paths";
 import Flights from "../app/routes/flights";
 
-const raw = JSON.parse(readFileSync(new URL("../app/data/flights.json", import.meta.url), "utf8"));
+const raw = JSON.parse(readFileSync(resolve(process.cwd(), "app/data/flights.json"), "utf8"));
 
 const legs = buildLegs(raw);
 const years = [...new Set(legs.map((leg) => leg.year))].sort((a, b) => a - b);

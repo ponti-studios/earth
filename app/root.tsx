@@ -112,6 +112,11 @@ export default function App({ loaderData }: Route.ComponentProps) {
   const navigation = useNavigation();
   const isNavigating = navigation.state === "loading";
   const [sheetOpen, setSheetOpen] = useState(false);
+  // Full-screen surfaces own their map canvas and panels, so they opt out of
+  // the TfL map + detail-sheet chrome. Normalising the pathname gives
+  // `/flights/` and `/parcels/` the same standalone layout.
+  const pathname = normalisePathname(location.pathname);
+  const standalone = pathname === "/flights" || pathname === "/parcels";
 
   // Reopen the sheet whenever the selection or route changes (but keep the
   // collapsed stub on first load so the map owns the screen).
@@ -124,10 +129,7 @@ export default function App({ loaderData }: Route.ComponentProps) {
     setSheetOpen(true);
   }, [location.key]);
 
-  // The travel map is its own full-screen surface: it owns the map canvas and
-  // side panel, so it opts out of the TfL map + detail-sheet chrome. Normalise
-  // the trailing slash so `/flights/` gets the same standalone layout.
-  if (normalisePathname(location.pathname) === "/flights") {
+  if (standalone) {
     return (
       <QueryProvider>
         <Outlet />
